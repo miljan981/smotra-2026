@@ -78,8 +78,10 @@
   .ph-cap .c2{font-family:var(--serif);font-size:1.9rem;font-weight:600;line-height:1}
   .float-deadline{position:absolute;right:-14px;bottom:-26px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 20px;box-shadow:0 14px 34px rgba(18,59,52,.14)}
   .float-deadline .fl{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-  .float-deadline .fv{font-family:var(--serif);font-style:italic;font-size:1.45rem;color:var(--ink);font-weight:600}
-  .float-deadline .fs{font-size:.8rem;color:var(--muted);margin-top:2px;max-width:170px}
+  .float-deadline .fv{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--ink);font-weight:600;line-height:1.2}
+  .fd-row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-top:6px}
+  .fd-row+.fd-row{border-top:1px dashed var(--line);padding-top:6px}
+  .fd-n{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 
   .stats{background:var(--cream2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .stats .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-top:52px;padding-bottom:52px;text-align:center}
@@ -262,7 +264,7 @@ const T = {
   en:{ nav:{home:"Home",about:"About",instructions:"Instructions",proceedings:"Proceedings",gallery:"Gallery",awards:"Awards",contact:"Contact"},
     submit:"Registration", badge:"Golden Jubilee — 50 Years", fifty:"Conference for Students",
     leadTail:"of Agriculture & Veterinary Medicine — with international participation",
-    deadline:"Deadline", deadlineNote:"Event registration deadline: 01.09.2026",
+    deadline:"Deadlines", dlReg:"Registration", dlPaper:"Full paper",
     submitPaper:"Registration", sendPaper:"Send paper by e-mail", authorInstr:"Author instructions",
     statYears:"Years", statPapers:"Published papers", statCountries:"Participating countries",
     areasEyebrow:"Scientific areas", areasTitle:"Fifty years of research tradition",
@@ -273,7 +275,7 @@ const T = {
   sr:{ nav:{home:"Početna",about:"O konferenciji",instructions:"Uputstva",proceedings:"Zbornici",gallery:"Galerija",awards:"Nagrade",contact:"Kontakt"},
     submit:"Registracija", badge:"Zlatni jubilej — 50 godina", fifty:"Konferencija studenata",
     leadTail:"poljoprivrede i veterinarske medicine — sa međunarodnim učešćem",
-    deadline:"Rok", deadlineNote:"Rok za registraciju: 01.09.2026",
+    deadline:"Rokovi", dlReg:"Registracija", dlPaper:"Rad",
     submitPaper:"Registracija", sendPaper:"Pošalji rad mejlom", authorInstr:"Uputstvo za autore",
     statYears:"Godina", statPapers:"Objavljenih radova", statCountries:"Zemalja učesnica",
     areasEyebrow:"Naučne oblasti", areasTitle:"Pedeset godina istraživačke tradicije",
@@ -346,7 +348,11 @@ function Hero({go,lang}){
         <img src={WHEAT} alt="Wheat field, Novi Sad" />
         <div className="ph-cap"><div className="c1">Novi Sad</div><div className="c2">Golden Jubilee</div></div>
       </div>
-      <div className="float-deadline"><div className="fl">{t.deadline}</div><div className="fv">01.09.2026.</div><div className="fs">{t.deadlineNote}</div></div>
+      <div className="float-deadline">
+        <div className="fl">{t.deadline}</div>
+        <div className="fd-row"><span className="fd-n">{t.dlReg}</span><span className="fv">01.09.2026.</span></div>
+        <div className="fd-row"><span className="fd-n">{t.dlPaper}</span><span className="fv">10.11.2026.</span></div>
+      </div>
     </div>
   </div></section>);
 }
