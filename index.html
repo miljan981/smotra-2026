@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="%23e7c34a"/><g transform="rotate(32 12 12)" fill="%2312403a"><path d="M12 2.6c1.7 1.5 1.7 3.9 0 5.4-1.7-1.5-1.7-3.9 0-5.4z"/><path d="M11.4 10.4C9.4 10.2 7.9 9 7.2 7c2 .2 3.5 1.4 4.2 3.4z"/><path d="M12.6 10.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/><path d="M11.4 14.4C9.4 14.2 7.9 13 7.2 11c2 .2 3.5 1.4 4.2 3.4z"/><path d="M12.6 14.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/><path d="M11.4 18.4C9.4 18.2 7.9 17 7.2 15c2 .2 3.5 1.4 4.2 3.4z"/><path d="M12.6 18.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/><rect x="11.55" y="9" width="0.9" height="12.4" rx="0.45"/></g></svg>'>
+<title>Student Conference Novi Sad — 50th Golden Jubilee (Nov 18–19, 2026)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,600;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.6/babel.min.js"></script>
+<style>
+  :root{
+    --cream:#f8f6ef; --cream2:#efece2; --paper:#fffefb;
+    --pine:#123b34; --pine-dark:#0e2d28; --pine-soft:#1c4d45;
+    --gold:#e7c34a; --gold-deep:#d8b23a;
+    --ink:#183a34; --muted:#6d746b; --line:#e6e2d6;
+    --serif:'Playfair Display',Georgia,serif; --sans:'Jost',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+  .serif{font-family:var(--serif)}
+  .eyebrow{font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--pine-soft);font-weight:500}
+  .eyebrow.gold{color:var(--gold-deep)}
+
+  header.nav{position:sticky;top:0;z-index:60;background:rgba(248,246,239,.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(230,226,214,.7)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:78px}
+  .brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+  .brand .mark{width:44px;height:44px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+  .brand .bt{font-family:var(--serif);font-size:1.28rem;line-height:1;color:var(--ink)}
+  .brand .bs{font-size:.62rem;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;margin-top:3px}
+  nav.menu{display:flex;align-items:center;gap:22px}
+  nav.menu button.link{background:none;border:none;font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);cursor:pointer;padding:6px 0;position:relative}
+  nav.menu button.link:hover{color:var(--pine-soft)}
+  nav.menu button.link.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--gold-deep)}
+  .lang{display:flex;border:1px solid var(--line);border-radius:20px;overflow:hidden}
+  .lang button{background:none;border:none;padding:5px 11px;font-size:.72rem;letter-spacing:.1em;cursor:pointer;color:var(--muted);font-family:var(--sans)}
+  .lang button.on{background:var(--pine);color:#fff}
+  .pill-cta{display:inline-block;background:var(--gold);color:var(--pine-dark);border:none;border-radius:24px;padding:11px 20px;font-family:var(--sans);font-weight:500;font-size:.82rem;cursor:pointer;white-space:nowrap;text-decoration:none}
+  .pill-cta:hover{background:var(--gold-deep)}
+  .admin-link{background:none;border:none;font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pine);cursor:pointer;font-weight:500}
+  .admin-link.dim{color:var(--muted);font-weight:400}
+
+  .btn{font-family:var(--sans);border:none;cursor:pointer;border-radius:26px;padding:14px 26px;font-size:.9rem;font-weight:500;transition:.15s;display:inline-flex;align-items:center;gap:8px}
+  .btn-dark{background:var(--pine-dark);color:#fff}
+  .btn-dark:hover{background:var(--pine)}
+  .btn-gold{background:var(--gold);color:var(--pine-dark)}
+  .btn-gold:hover{background:var(--gold-deep)}
+  .btn-out{background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff}
+  .btn-out:hover{background:rgba(255,255,255,.12)}
+  .btn-line{background:transparent;border:1px solid var(--pine);color:var(--pine)}
+  .btn-line:hover{background:var(--pine);color:#fff}
+  .btn-sm{padding:9px 16px;font-size:.8rem}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+
+  .hero{padding:64px 0 90px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:#f3ecc9;color:#8a6f1e;border:1px solid #e7d99a;padding:7px 16px;border-radius:20px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500;margin-bottom:26px}
+  .hero h1{font-family:var(--serif);color:var(--ink);line-height:.94;font-weight:800}
+  .hero h1 .fifty{display:block;font-style:italic;font-weight:600;font-size:clamp(2.4rem,5vw,3.6rem);margin-bottom:-6px}
+  .hero h1 .fifty sup{font-size:.42em}
+  .hero h1 .big{display:block;font-size:clamp(3.2rem,8vw,6rem)}
+  .hero .lead{font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.2vw,1.6rem);color:var(--muted);margin:24px 0 34px;max-width:520px;line-height:1.35}
+  .hero-meta{font-size:1.25rem;color:var(--ink);margin-bottom:32px;line-height:1.5}
+  .hero-meta .dot{color:var(--gold-deep);padding:0 8px;font-weight:700}
+  .hero-actions{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .hero-actions .mail{font-size:.9rem;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+  .hero-photo{position:relative}
+  .hero-photo img{width:100%;height:560px;object-fit:cover;border-radius:90px 20px 20px 20px;box-shadow:0 20px 50px rgba(18,59,52,.18)}
+  .ph-imgwrap{position:relative}
+  .ph-imgwrap img{display:block}
+  .ph-cap{position:absolute;left:26px;bottom:22px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.45)}
+  .ph-cap .c1{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;opacity:.92;margin-bottom:4px}
+  .ph-cap .c2{font-family:var(--serif);font-size:1.9rem;font-weight:600;line-height:1}
+  .float-deadline{position:absolute;right:-14px;bottom:-26px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 20px;box-shadow:0 14px 34px rgba(18,59,52,.14)}
+  .float-deadline .fl{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .float-deadline .fv{font-family:var(--serif);font-style:italic;font-size:1.45rem;color:var(--ink);font-weight:600}
+  .float-deadline .fs{font-size:.8rem;color:var(--muted);margin-top:2px;max-width:170px}
+
+  .stats{background:var(--cream2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding-top:52px;padding-bottom:52px;text-align:center}
+  .stat .n{font-family:var(--serif);font-size:clamp(2.6rem,6vw,4rem);color:var(--pine);font-weight:700;line-height:1}
+  .stat .l{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+
+  section.block{padding:88px 0}
+  .sec-head{margin-bottom:44px}
+  .sec-head h2{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3.1rem);color:var(--ink);font-weight:700;line-height:1.05;margin-top:14px;max-width:620px}
+  .sec-head .side{color:var(--muted);max-width:360px}
+  .head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+
+  .areas{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .area{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px;display:flex;justify-content:space-between;align-items:center;gap:14px}
+    .area .num{font-size:.66rem;letter-spacing:.12em;color:var(--muted);display:block;margin-bottom:6px}
+  .area .nm{font-family:var(--serif);font-size:1.28rem;color:var(--ink);line-height:1.15}
+
+  .works{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .work{border-radius:16px;overflow:hidden;background:var(--paper);border:1px solid var(--line);transition:.18s}
+  .work:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(18,59,52,.1)}
+  .work .thumb{height:150px;background:linear-gradient(135deg,#d7e0d2,#c3cfbd);position:relative;background-size:cover;background-position:center}
+  .work .cat{position:absolute;top:12px;left:12px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:3px 11px;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pine)}
+  .work .wbody{padding:16px 18px}
+  .work .wt{font-family:var(--serif);font-size:1.05rem;color:var(--ink);line-height:1.25;margin-bottom:6px}
+  .work .wm{font-size:.8rem;color:var(--muted)}
+  .link-all{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pine);cursor:pointer;border:none;background:none;font-family:var(--sans)}
+
+  .cta{padding:20px 0 96px}
+  .cta-box{background:var(--pine);border-radius:26px;padding:66px 60px;position:relative;overflow:hidden;color:#fff}
+  .cta-box::after{content:"";position:absolute;right:-70px;top:-40px;width:340px;height:340px;background:rgba(255,255,255,.06);border-radius:50%}
+  .cta-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center;position:relative;z-index:2}
+  .cta-box h2{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.02;margin:16px 0}
+  .cta-box h2 .date{color:var(--gold);display:block}
+  .cta-box p{color:rgba(255,255,255,.82);max-width:440px}
+  .cta-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+
+  .page{padding:70px 0 90px}
+  .page h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.2rem);color:var(--ink);font-weight:700;margin-bottom:8px;line-height:1.02}
+  .page .intro{color:var(--muted);max-width:640px;margin-bottom:40px;font-size:1.05rem}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:28px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .info-list{display:grid;gap:12px}
+  .info-list .r{display:flex;gap:14px;padding-bottom:12px;border-bottom:1px dashed var(--line)}
+  .info-list .r:last-child{border-bottom:none;padding-bottom:0}
+  .info-list b{min-width:150px;font-weight:500;color:var(--pine);font-size:.82rem;letter-spacing:.04em;text-transform:uppercase}
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:#eef2ea;border:1px solid #dce5d6;color:var(--pine);padding:8px 15px;border-radius:20px;font-size:.85rem}
+
+  /* about */
+  .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:56px}
+  .about-title{font-family:var(--serif);font-size:clamp(2.6rem,6vw,4.2rem);color:var(--ink);font-weight:700;line-height:1;margin:16px 0 30px}
+  .about-title em{font-style:italic;color:var(--gold-deep)}
+  .about-photo{width:100%;height:360px;object-fit:cover;border-radius:16px 16px 80px 16px;box-shadow:0 16px 40px rgba(18,59,52,.16)}
+  .quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.6vw,1.9rem);color:var(--ink);line-height:1.3;margin-bottom:22px}
+  .about-p{color:var(--muted);margin-bottom:34px;max-width:520px}
+  .hist-h{font-family:var(--serif);font-size:2rem;color:var(--ink);margin-bottom:24px}
+  .timeline{position:relative;padding-left:26px}
+  .timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .tl-item{position:relative;padding-bottom:26px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-26px;top:5px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--cream)}
+  .tl-year{font-family:var(--serif);font-size:1.25rem;color:var(--pine);margin-bottom:2px}
+  .tl-desc{color:var(--muted);font-size:.95rem}
+
+  /* instructions */
+  .instr-grid{display:grid;grid-template-columns:320px 1fr;gap:44px;align-items:start}
+  .quick{position:sticky;top:100px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:26px}
+  .quick .qh{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+  .quick .dark-btn{width:100%;background:var(--pine-dark);color:#fff;border:none;border-radius:12px;padding:15px 18px;display:flex;justify-content:space-between;align-items:center;font-family:var(--sans);font-size:.92rem;cursor:pointer;margin-bottom:20px}
+  .quick .dark-btn:hover{background:var(--pine)}
+  .quick .qmeta{border-top:1px dashed var(--line);padding-top:16px;color:var(--muted);font-size:.9rem}
+  .quick .qmeta p{margin-bottom:7px;color:var(--ink)}
+  .instr-h{font-family:var(--serif);font-size:1.9rem;color:var(--ink);margin:34px 0 16px}
+  .instr-h:first-child{margin-top:0}
+  .instr-list{list-style:none;display:grid;gap:12px}
+  .instr-list li{position:relative;padding-left:22px;color:var(--ink)}
+  .instr-list li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--gold-deep)}
+  .subcards{display:grid;gap:14px}
+  .subcard{border:1px solid var(--line);border-radius:14px;padding:18px 22px;background:var(--paper)}
+  .subcard h4{font-family:var(--serif);font-size:1.2rem;color:var(--pine);margin-bottom:5px;font-weight:600}
+  .subcard p{color:var(--muted);font-size:.94rem}
+  .callout{background:#f3ecc9;border:1px solid #e7d99a;border-radius:14px;padding:20px 24px;color:#8a6f1e;margin-top:28px}
+  .callout b{color:#6f5714}
+  .dlrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+
+  form.paper{display:grid;gap:20px;max-width:820px}
+  .field label{display:block;font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;color:var(--pine);font-weight:500;margin-bottom:8px}
+  .field .hint{text-transform:none;letter-spacing:0;color:var(--muted);font-weight:400;font-size:.8rem}
+  .field input,.field select,.field textarea{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;font-family:var(--sans);font-size:.98rem;background:var(--paper);color:var(--ink)}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--pine-soft);box-shadow:0 0 0 3px rgba(28,77,69,.1)}
+  .field textarea{resize:vertical;min-height:96px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .req{color:#b23b2e}
+  .counter{text-align:right;font-size:.8rem;color:var(--muted)}
+  .counter.over{color:#b23b2e;font-weight:600}
+  .notice{padding:14px 18px;border-radius:12px;font-size:.92rem;max-width:900px}
+  .notice.ok{background:#e6f2e7;border:1px solid #bfe0c3;color:#1f6b39}
+  .notice.err{background:#fbeae7;border:1px solid #f0c6bd;color:#b23b2e}
+  .notice.info{background:#f3ecc9;border:1px solid #e7d99a;color:#8a6f1e}
+
+  table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  th,td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--line);font-size:.9rem}
+  th{background:var(--cream2);color:var(--pine);font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:.72rem}
+  tr:last-child td{border-bottom:none}
+  .empty{padding:48px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
+
+  /* admin */
+  .adm-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+  .adm-tabs{display:flex;gap:4px;background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:5px;flex-wrap:wrap}
+  .adm-tabs button{background:none;border:none;padding:9px 16px;border-radius:22px;font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer}
+  .adm-tabs button.on{background:var(--pine-dark);color:#fff}
+  .adm-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .adm-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+  .adm-card .lbl{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pine-soft);margin-bottom:8px}
+  .adm-card .t{font-family:var(--serif);font-size:1.2rem;color:var(--ink);margin-bottom:4px}
+  .adm-card .a{font-size:.88rem;color:var(--muted)}
+  .adm-card .ar{font-size:.85rem;color:var(--muted);margin-top:4px}
+  .adm-card .acts{display:flex;gap:16px;margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+  .adm-card .acts button{background:none;border:none;cursor:pointer;font-family:var(--sans);font-size:.82rem;display:inline-flex;gap:5px;align-items:center}
+  .adm-card .acts .ed{color:var(--pine)}
+  .adm-card .acts .del{color:#b23b2e}
+  .adm-thumb{height:120px;border-radius:12px;margin-bottom:12px;background:linear-gradient(135deg,#d7e0d2,#c3cfbd);background-size:cover;background-position:center}
+  .adm-form{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:24px;display:grid;gap:16px}
+  .login-box{max-width:400px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:32px}
+
+  footer{border-top:1px solid var(--line);padding:64px 0 40px;background:var(--cream)}
+  .fgrid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:40px}
+  footer .addr{color:var(--muted);font-size:.9rem;max-width:320px;margin-top:16px}
+  footer .fcol h4{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:500}
+  footer .fcol p{color:var(--ink);font-size:.92rem;margin-bottom:8px}
+  footer .copy{text-align:center;color:var(--muted);font-size:.82rem;margin-top:48px;padding-top:22px;border-top:1px solid var(--line)}
+
+  .burger{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:42px;height:42px;cursor:pointer;font-size:1.2rem;color:var(--pine);align-items:center;justify-content:center}
+  .mmenu{display:none}
+  .mmenu.open{display:block;position:absolute;top:78px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 18px 40px rgba(18,59,52,.12);padding:10px 22px 18px;z-index:70}
+  .mmenu button{display:block;width:100%;text-align:left;background:none;border:none;border-bottom:1px solid var(--line);padding:14px 4px;font-family:var(--sans);font-size:.92rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);cursor:pointer}
+  .mmenu button:last-child{border-bottom:none}
+  html,body{overflow-x:hidden}
+  @media(max-width:960px){
+    .hero-grid,.cta-grid,.about-grid,.instr-grid{grid-template-columns:1fr}
+    .hero-photo img{height:380px}
+    .areas,.works,.stats .wrap,.grid2,.fgrid,.adm-cards{grid-template-columns:1fr 1fr}
+    nav.menu .link{display:none}
+    nav.menu .pill-cta{display:none}
+    nav.menu .admin-link{display:none}
+    .burger{display:flex}
+    .quick{position:static}
+    .wrap{padding:0 22px}
+    .hero{padding-top:40px}
+  }
+  @media(max-width:640px){
+    .areas,.works,.stats .wrap,.grid2,.fgrid,.row2,.adm-cards{grid-template-columns:1fr}
+    .cta-actions{justify-content:flex-start}
+    .float-deadline{position:static;margin-top:14px}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect } = React;
+const API = "";
+const GFORM = "https://forms.gle/aBic6qB4Xnpw4Ct69";
+const WHEAT = "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1000&q=80";
+const LECTURE = "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=80";
+const DEFAULT_AREAS = ["Plant production and precision agriculture","Landscape architecture","Fruit growing and horticulture","Plant protection","Animal science","Food quality and safety","Agricultural engineering","Water management","Agricultural economics","Veterinary medicine","Biotechnology"];
+const FALLBACK_CONF = {id:1, areas:DEFAULT_AREAS, status:"open"};
+
+const fetchContent=(type)=>fetch(API+"/api/content?type="+type).then(r=>{if(!r.ok)throw 0;return r.json();}).catch(()=>fetch("/data/"+type+".json").then(r=>r.ok?r.json():[]).catch(()=>[]));
+const fetchTemplates=()=>fetch(API+"/api/templates").then(r=>{if(!r.ok)throw 0;return r.json();}).catch(()=>fetch("/data/templates.json").then(r=>r.ok?r.json():[]).catch(()=>[]));
+
+const T = {
+  en:{ nav:{home:"Home",about:"About",instructions:"Instructions",proceedings:"Proceedings",gallery:"Gallery",awards:"Awards",contact:"Contact"},
+    submit:"Registration", badge:"Golden Jubilee — 50 Years", fifty:"Conference for Students",
+    leadTail:"of Agriculture & Veterinary Medicine — with international participation",
+    deadline:"Deadline", deadlineNote:"Event registration deadline: 01.09.2026",
+    submitPaper:"Registration", sendPaper:"Send paper by e-mail", authorInstr:"Author instructions",
+    statYears:"Years", statPapers:"Published papers", statCountries:"Participating countries",
+    areasEyebrow:"Scientific areas", areasTitle:"Fifty years of research tradition",
+    areasSide:"Interdisciplinary exchange between young researchers.",
+    procTitle:"Proceedings books", procSub:"Full conference proceedings by year.", viewAll:"View all", joinEyebrow:"Join us — 2026", registerBefore:"Register before",
+    joinTail:"with international participation. Interdisciplinary exchange between young researchers.",
+    regForm:"Google registration form", contactWord:"Contact", deadlines:"Rokovi / Deadlines" },
+  sr:{ nav:{home:"Početna",about:"O konferenciji",instructions:"Uputstva",proceedings:"Zbornici",gallery:"Galerija",awards:"Nagrade",contact:"Kontakt"},
+    submit:"Registracija", badge:"Zlatni jubilej — 50 godina", fifty:"Konferencija studenata",
+    leadTail:"poljoprivrede i veterinarske medicine — sa međunarodnim učešćem",
+    deadline:"Rok", deadlineNote:"Rok za registraciju: 01.09.2026",
+    submitPaper:"Registracija", sendPaper:"Pošalji rad mejlom", authorInstr:"Uputstvo za autore",
+    statYears:"Godina", statPapers:"Objavljenih radova", statCountries:"Zemalja učesnica",
+    areasEyebrow:"Naučne oblasti", areasTitle:"Pedeset godina istraživačke tradicije",
+    areasSide:"Interdisciplinarna razmena među mladim istraživačima.",
+    procTitle:"Zbornici radova", procSub:"Kompletni zbornici konferencije po godinama.", viewAll:"Prikaži sve", joinEyebrow:"Pridruži nam se — 2026", registerBefore:"Registruj se do",
+    joinTail:"sa međunarodnim učešćem. Interdisciplinarna razmena među mladim istraživačima.",
+    regForm:"Google prijava", contactWord:"Kontakt", deadlines:"Rokovi / Deadlines" }
+};
+
+function WheatMark({color}){
+  const c=color||"#12403a";
+  return <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+    <g transform="rotate(32 12 12)" fill={c}>
+      <path d="M12 2.6c1.7 1.5 1.7 3.9 0 5.4-1.7-1.5-1.7-3.9 0-5.4z"/>
+      <path d="M11.4 10.4C9.4 10.2 7.9 9 7.2 7c2 .2 3.5 1.4 4.2 3.4z"/>
+      <path d="M12.6 10.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/>
+      <path d="M11.4 14.4C9.4 14.2 7.9 13 7.2 11c2 .2 3.5 1.4 4.2 3.4z"/>
+      <path d="M12.6 14.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/>
+      <path d="M11.4 18.4C9.4 18.2 7.9 17 7.2 15c2 .2 3.5 1.4 4.2 3.4z"/>
+      <path d="M12.6 18.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/>
+      <rect x="11.55" y="9" width="0.9" height="12.4" rx="0.45"/>
+    </g>
+  </svg>;
+}
+function Nav({route,go,lang,setLang,admin,logout}){
+  const t=T[lang];
+  const [open,setOpen]=useState(false);
+  const items=[["home",t.nav.home],["about",t.nav.about],["instructions",t.nav.instructions],["proceedings",t.nav.proceedings],["gallery",t.nav.gallery],["awards",t.nav.awards],["contact",t.nav.contact]];
+  const nav=(k)=>{setOpen(false);go({name:k});};
+  return (
+    <header className="nav" style={{position:"sticky"}}><div className="wrap nav-in">
+      <div className="brand" onClick={()=>nav("home")}>
+        <div className="mark"><WheatMark /></div>
+        <div><div className="bt">Student Conference</div><div className="bs">Novi Sad</div></div>
+      </div>
+      <nav className="menu">
+        {items.map(([k,l])=><button key={k} className={"link"+(route.name===k?" active":"")} onClick={()=>nav(k)}>{l}</button>)}
+        <div className="lang"><button className={lang==="sr"?"on":""} onClick={()=>setLang("sr")}>SR</button><button className={lang==="en"?"on":""} onClick={()=>setLang("en")}>EN</button></div>
+        <a className="pill-cta" href={GFORM} target="_blank" rel="noreferrer">{t.submit} ↗</a>
+        <button className={"admin-link"+(route.name==="admin"?"":" dim")} onClick={()=>nav("admin")}>Admin</button>
+        {admin && <button className="admin-link dim" onClick={logout}>Log out</button>}
+        <button className="burger" onClick={()=>setOpen(!open)} aria-label="Menu">{open?"✕":"☰"}</button>
+      </nav>
+      <div className={"mmenu"+(open?" open":"")}>
+        {items.map(([k,l])=><button key={k} onClick={()=>nav(k)}>{l}</button>)}
+        <a className="hl" href={GFORM} target="_blank" rel="noreferrer" style={{display:"block",width:"100%",textAlign:"left",borderBottom:"1px solid var(--line)",padding:"14px 4px",fontSize:".92rem",letterSpacing:".08em",textTransform:"uppercase",color:"var(--pine)",fontWeight:600}}>{t.submit} ↗</a>
+        <button onClick={()=>nav("admin")}>Admin</button>
+        {admin && <button onClick={()=>{setOpen(false);logout();}}>Log out</button>}
+      </div>
+    </div></header>
+  );
+}
+
+function Hero({go,lang}){
+  const t=T[lang];
+  return (<section className="hero"><div className="wrap hero-grid">
+    <div>
+      <span className="badge">✦ {t.badge}</span>
+      <h1><span className="fifty serif">50<sup>th</sup></span><span className="big serif">{t.fifty}</span></h1>
+      <p className="lead">{t.leadTail}</p>
+      <div className="hero-meta serif">18–19 November 2026 <span className="dot">·</span> Faculty of Agriculture <span className="dot">·</span> Novi Sad</div>
+      <div className="hero-actions">
+        <a className="btn btn-dark" href={GFORM} target="_blank" rel="noreferrer">{t.submitPaper} ↗</a>
+        <button className="btn btn-gold" onClick={()=>go({name:"instructions"})}>{t.authorInstr}</button>
+        <a className="mail" href="mailto:smotra@polj.edu.rs">✉ smotra@polj.edu.rs</a>
+      </div>
+    </div>
+    <div className="hero-photo">
+      <div className="ph-imgwrap">
+        <img src={WHEAT} alt="Wheat field, Novi Sad" />
+        <div className="ph-cap"><div className="c1">Novi Sad</div><div className="c2">Golden Jubilee</div></div>
+      </div>
+      <div className="float-deadline"><div className="fl">{t.deadline}</div><div className="fv">01.09.2026.</div><div className="fs">{t.deadlineNote}</div></div>
+    </div>
+  </div></section>);
+}
+
+function Stats({lang}){
+  const t=T[lang]; const s=[["50",t.statYears],["3000+",t.statPapers],["20+",t.statCountries]];
+  return <div className="stats"><div className="wrap">{s.map(([n,l])=>(<div className="stat" key={l}><div className="n serif">{n}</div><div className="l">{l}</div></div>))}</div></div>;
+}
+
+function Areas({go,lang,conf}){
+  const t=T[lang]; const areas=conf?.areas||[];
+  return (<section className="block"><div className="wrap">
+    <div className="sec-head head-row"><div><div className="eyebrow">— {t.areasEyebrow}</div><h2 className="serif">{t.areasTitle}</h2></div><div className="side">{t.areasSide}</div></div>
+    <div className="areas">{areas.map((a,i)=>(<div className="area" key={a}><div><span className="num">{String(i+1).padStart(2,"0")}</span><div className="nm serif">{a}</div></div></div>))}</div>
+  </div></section>);
+}
+
+
+
+function ProcCard({p}){
+  const style=p.image_url?{backgroundImage:`url(${API+p.image_url})`}:{};
+  const inner=<div className="work" style={{cursor:p.pdf_url?"pointer":"default"}}>
+    <div className="thumb" style={style}><span className="cat">{p.year||"—"}</span></div>
+    <div className="wbody"><div className="wt serif">{p.title||("Proceedings "+(p.year||""))}</div>
+      <div className="wm">{p.extra||""}{p.pdf_url?" · 📄 PDF":""}</div></div>
+  </div>;
+  return p.pdf_url ? <a href={API+p.pdf_url} target="_blank" rel="noreferrer" style={{display:"block"}}>{inner}</a> : inner;
+}
+
+function ProcSection({go,lang,limit}){
+  const t=T[lang];
+  const [items,setItems]=useState(null);
+  useEffect(()=>{fetchContent("proceedings").then(setItems);},[]);
+  const list=items||[];
+  const shown=limit?list.slice(0,3):list;
+  if(limit && list.length===0) return null;
+  return (<section className="block" style={{paddingTop:limit?0:20}}><div className="wrap">
+    <div className="sec-head head-row">
+      <div><div className="eyebrow">— {t.procTitle}</div><h2 className="serif" style={{marginTop:10}}>{t.procTitle}</h2></div>
+      {limit ? <button className="link-all" onClick={()=>go({name:"proceedings"})}>{t.viewAll} →</button> : <div className="side">{t.procSub}</div>}
+    </div>
+    <div className="works" style={limit?{gridTemplateColumns:"repeat(3,1fr)"}:{}}>
+      {shown.map(p=><ProcCard key={p.id} p={p} />)}
+    </div>
+    {!limit && list.length===0 && <div className="empty">Proceedings will be added by the organizers.</div>}
+  </div></section>);
+}
+
+function ProceedingsPage({go,lang}){
+  const t=T[lang];
+  return <section className="page"><div className="wrap">
+    <div className="eyebrow">— {t.nav.proceedings}</div><h1 className="serif">{t.procTitle}</h1>
+    <p className="intro">{t.procSub}</p>
+    <ProcSection go={go} lang={lang} limit={false} />
+  </div></section>;
+}
+
+function CTA({go,lang}){
+  const t=T[lang];
+  return (<section className="cta"><div className="wrap"><div className="cta-box"><div className="cta-grid">
+    <div><div className="eyebrow gold">{t.joinEyebrow}</div><h2 className="serif">{t.registerBefore}<span className="date">01.09.2026.</span></h2><p>{t.joinTail}</p></div>
+    <div className="cta-actions"><a className="btn btn-gold" href="https://forms.gle/aBic6qB4Xnpw4Ct69" target="_blank" rel="noreferrer">{t.regForm} ↗</a><a className="btn btn-out" href="mailto:smotra@polj.edu.rs">{t.sendPaper} ✉</a></div>
+  </div></div></div></section>);
+}
+
+function Home({go,lang,conf}){
+  return <div><Hero go={go} lang={lang} /><Stats lang={lang} /><Areas go={go} lang={lang} conf={conf} /><ProcSection go={go} lang={lang} limit={true} /><CTA go={go} lang={lang} /></div>;
+}
+
+function About({lang}){
+  return <section className="page"><div className="wrap"><div className="about-grid">
+    <div>
+      <div className="eyebrow">— About the conference</div>
+      <h1 className="about-title serif"><em>50</em> years of student science.</h1>
+      <img className="about-photo" src={LECTURE} alt="Student presenting" />
+      <div className="card" style={{marginTop:22}}>
+        <div className="eyebrow" style={{marginBottom:10}}>In memoriam</div>
+        <p style={{color:"var(--muted)",fontSize:".95rem"}}>By decision of the Council of the University of Novi Sad, Faculty of Agriculture, made at its fourth meeting on 18 February 1981, the Conference is held in the memory of academician <b style={{color:"var(--pine)"}}>Dr Petar Drezgić</b>, professor — and the prizes awarded at the Conference bear his name.</p>
+      </div>
+    </div>
+    <div>
+      <p className="quote">"As the host and organizer of the Conference, the University of Novi Sad, Faculty of Agriculture has a special honor and pleasure to wish a warm welcome to all participants."</p>
+      <p className="about-p">The first Conference for students of agriculture and veterinary medicine with international participation was held in Novi Sad. To the present date, many papers from national and international authors have been presented — from Hungary (Gödöllő, Debrecen), Germany (Kassel), Slovakia (Nitra), Poland (Wrocław, Warsaw), Romania (Timișoara, Cluj, Bucharest, Sibiu), Bulgaria (Plovdiv), Russia (Moscow, Kemerovo), North Macedonia (Skopje, Bitola), Bosnia and Herzegovina (Sarajevo, Banja Luka) and Croatia (Zagreb).</p>
+      <p className="about-p">Since 2009, papers presented at the Conference are published in a special publication — the <b style={{color:"var(--pine)"}}>Proceedings of the Conference</b> — where all published papers have all elements of the original scientific paper. Students and mentors who wish to benefit more from the Conference are encouraged to publish their papers in the journal <i>Contemporary Agriculture</i>, published by the University of Novi Sad, Faculty of Agriculture.</p>
+      <h2 className="hist-h serif">Milestones</h2>
+      <div className="timeline">
+        <div className="tl-item"><div className="tl-year serif">1981</div><div className="tl-desc">The Faculty Council decides that the Conference is held in memory of academician Dr Petar Drezgić, whose name the Conference prizes bear.</div></div>
+        <div className="tl-item"><div className="tl-year serif">2009</div><div className="tl-desc">Papers presented at the Conference begin to be published in the official Proceedings, with all elements of the original scientific paper.</div></div>
+        <div className="tl-item"><div className="tl-year serif">2026</div><div className="tl-desc">Golden Jubilee — the 50th Conference, November 18–19, Novi Sad.</div></div>
+      </div>
+      <div className="card" style={{marginTop:26}}>
+        <p style={{color:"var(--muted)",fontSize:".92rem",marginBottom:10}}>We wish all participants successful work and amusing socializing in Novi Sad.</p>
+        <p style={{fontSize:".95rem"}}><b style={{color:"var(--pine)"}}>Dr Mila Grahovac</b>, full professor — Vice-dean for science and international cooperation</p>
+        <p style={{fontSize:".95rem"}}><b style={{color:"var(--pine)"}}>Dr Marta Loc</b>, assistant professor — President of the organizing committee</p>
+      </div>
+    </div>
+  </div></div></section>;
+}
+
+function Instructions({go,lang}){
+  const [tpls,setTpls]=useState([]);
+  useEffect(()=>{fetchTemplates().then(setTpls);},[]);
+  const struct=[["Title","Uppercase, bold, 11 pt, centered — placed on the 5th line below the top margin."],
+    ["Author(s) & Mentor","Bold, 10 pt, centered. Followed by affiliation (University, Faculty, Department, Country) in small caps."],
+    ["Summary","Italic, 10 pt, justified, up to 500 characters — objective, method, results, conclusion."],
+    ["Keywords","3–6 words, italic, 10 pt."],
+    ["Chapters","INTRODUCTION · MATERIAL AND METHODS · RESULTS AND DISCUSSION · CONCLUSION"],
+    ["References","Sorted alphabetically by first author's surname, no numbering, 9 pt."]];
+  return <section className="page"><div className="wrap">
+    <div className="eyebrow">— Author instructions</div>
+    <h1 className="serif" style={{maxWidth:760}}>How to prepare and submit your paper</h1>
+    <div className="instr-grid" style={{marginTop:40}}>
+      <aside className="quick">
+        <div className="qh">Quick actions</div>
+        <a className="dark-btn" href={GFORM} target="_blank" rel="noreferrer" style={{textDecoration:"none"}}>Registration <span>→</span></a>
+        <div className="qmeta"><p>Registration deadline: 01.09.2026</p><p>Full paper submission: 10.11.2026</p><p><b>Papers are submitted by e-mail:</b></p><p><a href="mailto:smotra@polj.edu.rs" style={{color:"var(--pine)",textDecoration:"underline"}}>smotra@polj.edu.rs</a></p></div>
+        <div className="dlrow">{tpls.map(tp=>(<a key={tp.name} className="btn btn-line btn-sm" href={API+tp.url}>⬇ {tp.name.includes("Template")?"Template (.docx)":"Instructions"}</a>))}</div>
+      </aside>
+      <div>
+        <h3 className="instr-h serif">Formatting &amp; length</h3>
+        <ul className="instr-list">
+          <li>Max 6 pages A4 (portrait), single spacing, including tables and figures.</li>
+          <li>Margins: 2.54 cm on all sides.</li>
+          <li>Font: Times New Roman, 10 pt, justified, first-line indent 0.6 cm. No pagination.</li>
+        </ul>
+        <h3 className="instr-h serif">Structure of the paper</h3>
+        <div className="subcards">{struct.map(([h,p])=>(<div className="subcard" key={h}><h4>{h}</h4><p>{p}</p></div>))}</div>
+        <h3 className="instr-h serif">Tables, figures &amp; equations</h3>
+        <ul className="instr-list">
+          <li>Tables: minimum horizontal lines, 9 pt, placed in the text. Caption ABOVE the table.</li>
+          <li>Figures: TIF/JPG at 300 dpi, or vector CDR/AI. Caption BELOW the figure.</li>
+          <li>Equations: use MS Word Equation Editor, no screenshots. Center and number as (1).</li>
+        </ul>
+        <h3 className="instr-h serif">Citing references</h3>
+        <ul className="instr-list">
+          <li>In text — more than two authors: (Pejić et al., 2013)</li>
+          <li>In text — two authors: (Stančić and Šahinović, 1995)</li>
+          <li>References sorted alphabetically by first author's surname, 9 pt.</li>
+        </ul>
+        <div className="callout"><b>Important.</b> Papers not prepared according to these instructions will not be considered for publishing. The text will not be proof-read — please ensure grammatical correctness.</div>
+      </div>
+    </div>
+  </div></section>;
+}
+
+
+function Gallery({lang}){
+  const [photos,setPhotos]=useState(null);
+  useEffect(()=>{fetchContent("photo").then(setPhotos);},[]);
+  const list=photos||[];
+  return <section className="page"><div className="wrap">
+    <div className="eyebrow">— {T[lang].nav.gallery}</div><h1 className="serif">Gallery</h1>
+    <p className="intro">Moments from the conference. Managed by the organizers.</p>
+    {list.length>0 ? <div className="works">{list.map(p=>(<div className="work" key={p.id}><div className="thumb" style={p.image_url?{backgroundImage:`url(${API+p.image_url})`}:{}}></div>{(p.title||p.extra)&&<div className="wbody"><div className="wt serif">{p.title}</div><div className="wm">{p.extra}</div></div>}</div>))}</div>
+      : <div className="works">{[1,2,3,4,5,6,7,8].map(i=><div className="work" key={i}><div className="thumb"></div></div>)}</div>}
+  </div></section>;
+}
+
+function Awards({lang}){
+  const [aw,setAw]=useState(null);
+  useEffect(()=>{fetchContent("award").then(setAw);},[]);
+  const list=aw||[];
+  return <section className="page"><div className="wrap">
+    <div className="eyebrow">— {T[lang].nav.awards}</div><h1 className="serif">Awards</h1>
+    <p className="intro">Best oral presentation and best poster are awarded in each scientific area.</p>
+    {list.length>0 ? <div className="adm-cards">{list.map(a=>(<div className="adm-card" key={a.id}><div className="lbl">{[a.year,a.kind].filter(Boolean).join(" · ")}</div><div className="t serif">{a.title}</div><div className="a">{a.authors}</div><div className="ar">{[a.area,a.extra].filter(Boolean).join(" — ")}</div></div>))}</div>
+      : <div className="grid2"><div className="card"><div className="serif" style={{fontSize:"1.4rem",marginBottom:8}}>🥇 Best oral presentation</div><p style={{color:"var(--muted)"}}>Awarded per scientific area.</p></div><div className="card"><div className="serif" style={{fontSize:"1.4rem",marginBottom:8}}>🖼 Best poster</div><p style={{color:"var(--muted)"}}>Awarded per scientific area.</p></div></div>}
+  </div></section>;
+}
+
+function Contact({lang}){
+  const MAP_Q="Poljoprivredni fakultet, Trg Dositeja Obradovi\u0107a 8, 21000 Novi Sad";
+  return <section className="page"><div className="wrap">
+    <div className="eyebrow">— {T[lang].nav.contact}</div><h1 className="serif">Get in touch</h1>
+    <p className="intro">For any questions about registration, papers or the programme.</p>
+    <div className="grid2">
+      <div className="card"><div className="info-list">
+        <div className="r"><b>Email</b><span>smotra@polj.edu.rs</span></div>
+        <div className="r"><b>Website</b><span>polj.uns.ac.rs</span></div>
+        <div className="r"><b>Instagram</b><span>@student_conference_novisad</span></div>
+        <div className="r"><b>Address</b><span>Trg Dositeja Obradovića 8, 21000 Novi Sad, Serbia</span></div>
+      </div></div>
+      <div className="card"><div className="serif" style={{fontSize:"1.4rem",marginBottom:10}}>Register</div><p style={{color:"var(--muted)",marginBottom:18}}>Registration closes 01.09.2026.</p><a className="btn btn-gold" href="https://forms.gle/aBic6qB4Xnpw4Ct69" target="_blank" rel="noreferrer">Google registration form ↗</a></div>
+    </div>
+    <div className="card map-card" style={{marginTop:20,padding:0,overflow:"hidden"}}>
+      <iframe title="Faculty of Agriculture, Novi Sad" src={"https://maps.google.com/maps?q="+encodeURIComponent(MAP_Q)+"&z=16&ie=UTF8&output=embed"}
+        style={{width:"100%",height:420,border:0,display:"block"}} loading="lazy" allowFullScreen referrerPolicy="no-referrer-when-downgrade"></iframe>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:12,flexWrap:"wrap",padding:"16px 22px"}}>
+        <div><b style={{color:"var(--pine)"}}>📍 Faculty of Agriculture, University of Novi Sad</b><br/><span style={{color:"var(--muted)",fontSize:".9rem"}}>Trg Dositeja Obradovića 8, 21000 Novi Sad, Serbia</span></div>
+        <a className="btn btn-line btn-sm" href={"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(MAP_Q)} target="_blank" rel="noreferrer">Open in Google Maps ↗</a>
+      </div>
+    </div>
+  </div></section>;
+}
+
+
+/* ---------------- ADMIN ---------------- */
+const KIND_OPTS={award:["Best poster","Best oral presentation","Special award"],photo:[],proceedings:[]};
+
+function ContentManager({type,admin,conf}){
+  const [items,setItems]=useState(null);
+  const [form,setForm]=useState(null); // null=closed, else object (with id for edit)
+  const [file,setFile]=useState(null);
+  const [pdfFile,setPdfFile]=useState(null);
+  const [busy,setBusy]=useState(false);
+  const load=()=>fetch(API+"/api/content?type="+type).then(r=>r.json()).then(setItems).catch(()=>setItems([]));
+  useEffect(()=>{load();},[type]);
+  const blank={type,year:"",kind:KIND_OPTS[type][0]||"",title:"",authors:"",area:"",extra:""};
+  const openNew=()=>{setForm({...blank});setFile(null);setPdfFile(null);};
+  const openEdit=(it)=>{setForm({...it});setFile(null);setPdfFile(null);};
+  const save=async(e)=>{e.preventDefault();setBusy(true);
+    const fd=new FormData(); ["type","year","kind","title","authors","area","extra"].forEach(k=>fd.append(k,form[k]||""));
+    if(file) fd.append("file",file);
+    if(pdfFile) fd.append("pdf",pdfFile);
+    const url=form.id?API+"/api/admin/content/"+form.id:API+"/api/admin/content";
+    const method=form.id?"PUT":"POST";
+    try{const r=await fetch(url,{method,headers:{"X-Admin-Password":admin},body:fd}); if(!r.ok) throw new Error("Save failed"); setForm(null);setFile(null);setPdfFile(null);load();}
+    catch(err){alert(err.message);} setBusy(false);};
+  const del=async(id)=>{if(!confirm("Delete this item?"))return; await fetch(API+"/api/admin/content/"+id,{method:"DELETE",headers:{"X-Admin-Password":admin}}); load();};
+  const set=(k)=>(e)=>setForm({...form,[k]:e.target.value});
+  return <div>
+    <div style={{display:"flex",justifyContent:"flex-end",marginBottom:18}}><button className="pill-cta" onClick={openNew}>+ Add new</button></div>
+    {form && <form className="adm-form" onSubmit={save}>
+      <div className="row2">
+        <div className="field"><label>Year</label><input value={form.year} onChange={set("year")} placeholder="2026" /></div>
+        {KIND_OPTS[type].length>0 && <div className="field"><label>Type</label><select value={form.kind} onChange={set("kind")}>{KIND_OPTS[type].map(k=><option key={k}>{k}</option>)}</select></div>}
+      </div>
+      <div className="field"><label>Title</label><input value={form.title} onChange={set("title")} placeholder="Title" required /></div>
+      {type!=="photo" && <div className="field"><label>Authors</label><input value={form.authors} onChange={set("authors")} placeholder="Surname N., Surname N." /></div>}
+      {type!=="photo" && <div className="field"><label>Scientific area</label><select value={form.area} onChange={set("area")}><option value="">—</option>{(conf?.areas||[]).map(a=><option key={a}>{a}</option>)}</select></div>}
+      <div className="field"><label>{type==="award"?"Note (e.g. 1st place)":type==="photo"?"Caption":"Note"}</label><input value={form.extra} onChange={set("extra")} /></div>
+      <div className="field"><label>Image {type==="photo"?"":"(optional cover image)"}</label><input type="file" accept="image/*" onChange={(e)=>setFile(e.target.files[0]||null)} /></div>
+      {type==="proceedings" && <div className="field"><label>PDF (the proceedings book)</label><input type="file" accept="application/pdf" onChange={(e)=>setPdfFile(e.target.files[0]||null)} />{form.pdf_url && !pdfFile && <div className="hint" style={{marginTop:6}}>📄 PDF already attached — choose a file only to replace it.</div>}</div>}
+      <div style={{display:"flex",gap:12}}><button className="btn btn-dark btn-sm" type="submit" disabled={busy}>{busy?"Saving…":(form.id?"Update":"Add")}</button><button type="button" className="btn btn-line btn-sm" onClick={()=>setForm(null)}>Cancel</button></div>
+    </form>}
+    {!items ? <p style={{color:"var(--muted)"}}>Loading…</p> : items.length===0 ? <div className="empty">No items yet. Use “Add new”.</div> :
+      <div className="adm-cards">{items.map(it=>(<div className="adm-card" key={it.id}>
+        {type==="photo" && <div className="adm-thumb" style={it.image_url?{backgroundImage:`url(${API+it.image_url})`}:{}}></div>}
+        <div className="lbl">{[it.year,it.kind].filter(Boolean).join(" · ")||type}</div>
+        <div className="t serif">{it.title}</div>
+        {it.authors && <div className="a">{it.authors}</div>}
+        {(it.area||it.extra) && <div className="ar">{[it.area,it.extra].filter(Boolean).join(" — ")}</div>}
+        {it.pdf_url && <div className="ar">📄 PDF attached</div>}
+        <div className="acts"><button className="ed" onClick={()=>openEdit(it)}>✎ Edit</button><button className="del" onClick={()=>del(it.id)}>🗑 Delete</button></div>
+      </div>))}</div>}
+  </div>;
+}
+
+
+function Admin({admin,setAdmin,conf}){
+  const [pw,setPw]=useState(""); const [err,setErr]=useState(""); const [tab,setTab]=useState("proceedings");
+  const login=async(e)=>{e.preventDefault();setErr("");
+    let r;
+    try{ r=await fetch(API+"/api/admin/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:pw})}); }
+    catch(netErr){ setErr("Cannot reach the server. Start the backend (uvicorn main:app) and open the site at http://localhost:8000 — not by double-clicking the file."); return; }
+    if(r.status===401){ setErr("Invalid admin password."); return; }
+    if(!r.ok){ setErr("Login failed (server error "+r.status+")."); return; }
+    setAdmin(pw);
+  };
+  const fileMode = (typeof window!=="undefined" && window.location && window.location.protocol==="file:");
+  if(!admin) return <section className="page"><div className="wrap">
+    <div className="eyebrow">— Administration</div><h1 className="serif">Admin login</h1>
+    <p className="intro">Enter the admin password to manage proceedings, photos and awards.</p>
+    {fileMode && <div className="notice err" style={{marginBottom:20,maxWidth:620}}>You opened this page as a local file. The admin needs the backend running. Start it with <b>uvicorn main:app</b> and open <b>http://localhost:8000</b>.</div>}
+    <form className="login-box" onSubmit={login}>
+      {err && <div className="notice err" style={{marginBottom:16}}>{err}</div>}
+      <div className="field"><label>Password</label><input type="password" value={pw} onChange={(e)=>setPw(e.target.value)} placeholder="••••••••" autoFocus /></div>
+      <button className="btn btn-dark" type="submit" style={{marginTop:16}}>Log in</button>
+      <p style={{color:"var(--muted)",fontSize:".82rem",marginTop:14}}>Default password: smotra2026 (change via ADMIN_PASSWORD env var).</p>
+    </form>
+  </div></section>;
+  const tabs=[["proceedings","Proceedings"],["photo","Photos"],["award","Awards"],["instagram","Instagram"]];
+  return <section className="page"><div className="wrap">
+    <div className="adm-head">
+      <div><div className="eyebrow">— Administration</div><h1 className="serif" style={{marginTop:8}}>admin@smotra.rs</h1></div>
+      <div className="adm-tabs">{tabs.map(([k,l])=><button key={k} className={tab===k?"on":""} onClick={()=>setTab(k)}>{l}</button>)}</div>
+    </div>
+    {(tab==="photo"||tab==="award"||tab==="proceedings") && <ContentManager type={tab} admin={admin} conf={conf} />}
+    {tab==="instagram" && <div className="empty">Instagram feed — follow @student_conference_novisad. (Feed integration can be added later.)</div>}
+  </div></section>;
+}
+
+function Footer({lang}){
+  const t=T[lang];
+  return <footer><div className="wrap"><div className="fgrid">
+    <div><div className="brand"><div className="mark" style={{background:"var(--pine)"}}><WheatMark color="#e7c34a" /></div><div><div className="bt serif">Student Conference</div><div className="bs">Novi Sad</div></div></div>
+      <p className="addr">Poljoprivredni fakultet, Univerzitet u Novom Sadu — Trg Dositeja Obradovića 8, 21000 Novi Sad, Srbija.</p></div>
+    <div className="fcol"><h4>{t.contactWord}</h4><p>smotra@polj.edu.rs</p><p>polj.uns.ac.rs</p><p>@student_conference_novisad</p></div>
+    <div className="fcol"><h4>{t.deadlines}</h4><p>Registration deadline: 01.09.2026</p><p>Full paper submission: 10.11.2026</p><p>November 18–19, 2026</p></div>
+  </div><div className="copy">© 2026 Student Conference — All rights reserved.</div></div></footer>;
+}
+
+function App(){
+  const [route,setRoute]=useState({name:"home"});
+  const [lang,setLang]=useState("en");
+  const [conf,setConf]=useState(null);
+  const [admin,setAdmin]=useState(null);
+  useEffect(()=>{fetch(API+"/api/conferences").then(r=>r.json()).then(l=>{const c=(l||[]).find(x=>x.status==="open")||(l||[])[0];setConf(c&&c.areas&&c.areas.length?c:FALLBACK_CONF);}).catch(()=>setConf(FALLBACK_CONF));},[]);
+  const go=(r)=>{setRoute(r);window.scrollTo(0,0);};
+  const logout=()=>{setAdmin(null);go({name:"home"});};
+  return <div>
+    <Nav route={route} go={go} lang={lang} setLang={setLang} admin={admin} logout={logout} />
+    {route.name==="home" && <Home go={go} lang={lang} conf={conf} />}
+    {route.name==="about" && <About lang={lang} />}
+    {route.name==="instructions" && <Instructions go={go} lang={lang} />}
+    {route.name==="proceedings" && <ProceedingsPage go={go} lang={lang} />}
+    {route.name==="gallery" && <Gallery lang={lang} />}
+    {route.name==="awards" && <Awards lang={lang} />}
+    {route.name==="contact" && <Contact lang={lang} />}
+    {route.name==="admin" && <Admin admin={admin} setAdmin={setAdmin} conf={conf} />}
+    <Footer lang={lang} />
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

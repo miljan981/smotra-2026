@@ -1,0 +1,15 @@
+OVAJ FOLDER SADRZI TACNO ONO STO SE KACI NA GITHUB.
+
+1. Na github.com napravi novi repozitorijum (npr. "smotra-2026", Public).
+2. Klikni "uploading an existing file".
+3. Otvori ovaj folder (ZA-UPLOAD), selektuj SVE unutra (Ctrl+A)
+   i prevuci u GitHub prozor. Sacekaj da se sve okaci, pa "Commit changes".
+4. Na vercel.com/new -> Continue with GitHub -> izaberi repo -> Deploy.
+   (Nista ne podesavaj - Root Directory ostaje kako jeste.)
+
+Ovaj PROCITAJ-ME.txt fajl NE moras da uploadujes (ali ne smeta ako ga okacis).
+
+KASNIJE IZMENE SADRZAJA:
+- pokreni publish-UPDATE.bat (u glavnom folderu)
+- na GitHubu klikni "Add file" -> "Upload files" i prevuci izmenjene
+  fajlove iz frontend\data i frontend\media
