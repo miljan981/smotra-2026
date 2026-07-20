@@ -186,6 +186,13 @@
   tr:last-child td{border-bottom:none}
   .empty{padding:48px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
 
+  /* proceedings book cover */
+  .pcover{height:190px;background:linear-gradient(150deg,#16463d,#0e2d28);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:14px}
+  .pcover::before{content:"";position:absolute;inset:10px;border:1px solid rgba(231,195,74,.55);border-radius:8px;pointer-events:none}
+  .pcover .py{font-family:var(--serif);font-size:2.5rem;color:var(--gold);font-weight:700;line-height:1;font-style:italic}
+  .pcover .pl{font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-top:7px}
+  .pcover .pm{margin-bottom:9px;opacity:.95}
+  .work .open-pdf{color:var(--gold-deep);font-weight:600}
   /* admin */
   .adm-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
   .adm-tabs{display:flex;gap:4px;background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:5px;flex-wrap:wrap}
@@ -360,11 +367,17 @@ function Areas({go,lang,conf}){
 
 
 function ProcCard({p}){
-  const style=p.image_url?{backgroundImage:`url(${API+p.image_url})`}:{};
+  const cover = p.image_url
+    ? <div className="thumb" style={{backgroundImage:`url(${API+p.image_url})`}}><span className="cat">{p.year||""}</span></div>
+    : <div className="pcover">
+        <div className="pm"><WheatMark color="#e7c34a" /></div>
+        {p.year && <div className="py">{p.year}</div>}
+        <div className="pl">Proceedings</div>
+      </div>;
   const inner=<div className="work" style={{cursor:p.pdf_url?"pointer":"default"}}>
-    <div className="thumb" style={style}><span className="cat">{p.year||"—"}</span></div>
+    {cover}
     <div className="wbody"><div className="wt serif">{p.title||("Proceedings "+(p.year||""))}</div>
-      <div className="wm">{p.extra||""}{p.pdf_url?" · 📄 PDF":""}</div></div>
+      <div className="wm">{p.extra?p.extra+" · ":""}{p.pdf_url && <span className="open-pdf">Open PDF ↗</span>}</div></div>
   </div>;
   return p.pdf_url ? <a href={API+p.pdf_url} target="_blank" rel="noreferrer" style={{display:"block"}}>{inner}</a> : inner;
 }
