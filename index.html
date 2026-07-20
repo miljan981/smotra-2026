@@ -113,7 +113,9 @@
   .cta-box{background:var(--pine);border-radius:26px;padding:66px 60px;position:relative;overflow:hidden;color:#fff}
   .cta-box::after{content:"";position:absolute;right:-70px;top:-40px;width:340px;height:340px;background:rgba(255,255,255,.06);border-radius:50%}
   .cta-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center;position:relative;z-index:2}
-  .cta-box h2{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.02;margin:16px 0}
+  .cta-box h2{font-family:var(--serif);font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:700;line-height:1.06;margin:0}
+  .cta-deadlines{display:flex;align-items:stretch;gap:30px;margin:16px 0}
+  .cta-sep{width:1px;background:rgba(255,255,255,.28);flex-shrink:0}
   .cta-box h2 .date{color:var(--gold);display:block}
   .cta-box p{color:rgba(255,255,255,.82);max-width:440px}
   .cta-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
@@ -242,6 +244,8 @@
   @media(max-width:640px){
     .areas,.works,.stats .wrap,.grid2,.fgrid,.row2,.adm-cards{grid-template-columns:1fr}
     .cta-actions{justify-content:flex-start}
+    .cta-deadlines{flex-direction:column;gap:14px}
+    .cta-sep{width:auto;height:1px}
     .float-deadline{position:static;margin-top:14px}
   }
 </style>
@@ -269,7 +273,7 @@ const T = {
     statYears:"Years", statPapers:"Published papers", statCountries:"Participating countries",
     areasEyebrow:"Scientific areas", areasTitle:"Fifty years of research tradition",
     areasSide:"Interdisciplinary exchange between young researchers.",
-    procTitle:"Proceedings books", procSub:"Full conference proceedings by year.", viewAll:"View all", joinEyebrow:"Join us — 2026", registerBefore:"Register before",
+    procTitle:"Proceedings books", procSub:"Full conference proceedings by year.", viewAll:"View all", joinEyebrow:"Join us — 2026", registerBefore:"Register before", paperBefore:"Send full paper before",
     joinTail:"with international participation. Interdisciplinary exchange between young researchers.",
     regForm:"Google registration form", contactWord:"Contact", deadlines:"Rokovi / Deadlines" },
   sr:{ nav:{home:"Početna",about:"O konferenciji",instructions:"Uputstva",proceedings:"Zbornici",gallery:"Galerija",awards:"Nagrade",contact:"Kontakt"},
@@ -280,7 +284,7 @@ const T = {
     statYears:"Godina", statPapers:"Objavljenih radova", statCountries:"Zemalja učesnica",
     areasEyebrow:"Naučne oblasti", areasTitle:"Pedeset godina istraživačke tradicije",
     areasSide:"Interdisciplinarna razmena među mladim istraživačima.",
-    procTitle:"Zbornici radova", procSub:"Kompletni zbornici konferencije po godinama.", viewAll:"Prikaži sve", joinEyebrow:"Pridruži nam se — 2026", registerBefore:"Registruj se do",
+    procTitle:"Zbornici radova", procSub:"Kompletni zbornici konferencije po godinama.", viewAll:"Prikaži sve", joinEyebrow:"Pridruži nam se — 2026", registerBefore:"Registruj se do", paperBefore:"Pošalji rad do",
     joinTail:"sa međunarodnim učešćem. Interdisciplinarna razmena među mladim istraživačima.",
     regForm:"Google prijava", contactWord:"Kontakt", deadlines:"Rokovi / Deadlines" }
 };
@@ -419,7 +423,13 @@ function ProceedingsPage({go,lang}){
 function CTA({go,lang}){
   const t=T[lang];
   return (<section className="cta"><div className="wrap"><div className="cta-box"><div className="cta-grid">
-    <div><div className="eyebrow gold">{t.joinEyebrow}</div><h2 className="serif">{t.registerBefore}<span className="date">01.09.2026.</span></h2><p>{t.joinTail}</p></div>
+    <div><div className="eyebrow gold">{t.joinEyebrow}</div>
+      <div className="cta-deadlines">
+        <h2 className="serif">{t.registerBefore}<span className="date">01.09.2026.</span></h2>
+        <div className="cta-sep"></div>
+        <h2 className="serif">{t.paperBefore}<span className="date">10.11.2026.</span></h2>
+      </div>
+      <p>{t.joinTail}</p></div>
     <div className="cta-actions"><a className="btn btn-gold" href="https://forms.gle/aBic6qB4Xnpw4Ct69" target="_blank" rel="noreferrer">{t.regForm} ↗</a><a className="btn btn-out" href="mailto:smotra@polj.edu.rs">{t.sendPaper} ✉</a></div>
   </div></div></div></section>);
 }
