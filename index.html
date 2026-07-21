@@ -197,6 +197,16 @@
   .pcover .pl{font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-top:7px}
   .pcover .pm{margin-bottom:9px;opacity:.95}
   .work .open-pdf{color:var(--gold-deep);font-weight:600}
+  /* gallery */
+  .g-group{margin-bottom:60px}
+  .g-year{font-family:var(--serif);font-size:2.2rem;color:var(--ink);font-weight:700;margin-bottom:18px;display:flex;align-items:baseline;gap:12px}
+  .g-year::after{content:"";flex:1;height:1px;background:var(--line)}
+  .g-count{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:400}
+  .g-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .gph{display:block;height:185px;border-radius:14px;background-size:cover;background-position:center;border:1px solid var(--line);transition:.18s}
+  .gph:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(18,59,52,.14)}
+  @media(max-width:960px){.g-grid{grid-template-columns:repeat(2,1fr)}.gph{height:150px}}
+  @media(max-width:640px){.g-grid{grid-template-columns:repeat(2,1fr)}.gph{height:130px}}
   /* admin */
   .adm-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
   .adm-tabs{display:flex;gap:4px;background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:5px;flex-wrap:wrap}
@@ -519,11 +529,22 @@ function Gallery({lang}){
   const [photos,setPhotos]=useState(null);
   useEffect(()=>{fetchContent("photo").then(setPhotos);},[]);
   const list=photos||[];
+  const years=[...new Set(list.map(p=>p.year||"—"))].sort().reverse();
   return <section className="page"><div className="wrap">
     <div className="eyebrow">— {T[lang].nav.gallery}</div><h1 className="serif">Gallery</h1>
-    <p className="intro">Moments from the conference. Managed by the organizers.</p>
-    {list.length>0 ? <div className="works">{list.map(p=>(<div className="work" key={p.id}><div className="thumb" style={p.image_url?{backgroundImage:`url(${API+p.image_url})`}:{}}></div>{(p.title||p.extra)&&<div className="wbody"><div className="wt serif">{p.title}</div><div className="wm">{p.extra}</div></div>}</div>))}</div>
-      : <div className="works">{[1,2,3,4,5,6,7,8].map(i=><div className="work" key={i}><div className="thumb"></div></div>)}</div>}
+    <p className="intro">Moments from the conference, year by year.</p>
+    {!photos ? <p style={{color:"var(--muted)"}}>Loading…</p> :
+     list.length===0 ? <div className="empty">Photos will be added by the organizers.</div> :
+     years.map(y=>{
+       const ph=list.filter(p=>(p.year||"—")===y);
+       return <div className="g-group" key={y}>
+         <div className="g-year">{y} <span className="g-count">{ph.length} photos</span></div>
+         <div className="g-grid">
+           {ph.map(p=><a key={p.id} className="gph" href={API+p.image_url} target="_blank" rel="noreferrer"
+             style={p.image_url?{backgroundImage:`url(${API+p.image_url})`}:{}} title={p.extra||("SMOTRA "+y)}></a>)}
+         </div>
+       </div>;
+     })}
   </div></section>;
 }
 
