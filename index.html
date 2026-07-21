@@ -267,7 +267,6 @@ const { useState, useEffect } = React;
 const API = "";
 const GFORM = "https://forms.gle/aBic6qB4Xnpw4Ct69";
 const WHEAT = "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1000&q=80";
-const LECTURE = "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=80";
 const DEFAULT_AREAS = ["Plant production and precision agriculture","Landscape architecture","Fruit growing and horticulture","Plant protection","Animal science","Food quality and safety","Agricultural engineering","Water management","Agricultural economics","Veterinary medicine","Biotechnology"];
 const FALLBACK_CONF = {id:1, areas:DEFAULT_AREAS, status:"open"};
 
@@ -453,7 +452,7 @@ function About({lang}){
     <div>
       <div className="eyebrow">— About the conference</div>
       <h1 className="about-title serif"><em>50</em> years of student science.</h1>
-      <img className="about-photo" src={LECTURE} alt="Student presenting" />
+      <img className="about-photo" src="/media/gallery_2024_12.jpg" alt="Conference audience, Faculty of Agriculture" />
       <div className="card" style={{marginTop:22}}>
         <div className="eyebrow" style={{marginBottom:10}}>In memoriam</div>
         <p style={{color:"var(--muted)",fontSize:".95rem"}}>By decision of the Council of the University of Novi Sad, Faculty of Agriculture, made at its fourth meeting on 18 February 1981, the Conference is held in the memory of academician <b style={{color:"var(--pine)"}}>Dr Petar Drezgić</b>, professor — and the prizes awarded at the Conference bear his name.</p>
@@ -468,11 +467,6 @@ function About({lang}){
         <div className="tl-item"><div className="tl-year serif">1981</div><div className="tl-desc">The Faculty Council decides that the Conference is held in memory of academician Dr Petar Drezgić, whose name the Conference prizes bear.</div></div>
         <div className="tl-item"><div className="tl-year serif">2009</div><div className="tl-desc">Papers presented at the Conference begin to be published in the official Proceedings, with all elements of the original scientific paper.</div></div>
         <div className="tl-item"><div className="tl-year serif">2026</div><div className="tl-desc">Golden Jubilee — the 50th Conference, November 18–19, Novi Sad.</div></div>
-      </div>
-      <div className="card" style={{marginTop:26}}>
-        <p style={{color:"var(--muted)",fontSize:".92rem",marginBottom:10}}>We wish all participants successful work and amusing socializing in Novi Sad.</p>
-        <p style={{fontSize:".95rem"}}><b style={{color:"var(--pine)"}}>Dr Mila Grahovac</b>, full professor — Vice-dean for science and international cooperation</p>
-        <p style={{fontSize:".95rem"}}><b style={{color:"var(--pine)"}}>Dr Marta Loc</b>, assistant professor — President of the organizing committee</p>
       </div>
     </div>
   </div></div></section>;
