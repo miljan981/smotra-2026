@@ -295,7 +295,7 @@ const T = {
     regForm:"Google registration form", contactWord:"Contact", deadlines:"Deadlines",
     footOrg:"Organized by the Faculty of Agriculture, University of Novi Sad",
     footAddr:"Faculty of Agriculture, University of Novi Sad — Trg Dositeja Obradovića 8, 21000 Novi Sad, Serbia.",
-    footReg:"Registration deadline: 01.09.2026", footPaper:"Full paper submission: 10.11.2026", footDates:"November 18–19, 2026", rights:"All rights reserved.",
+    footReg:"Registration deadline: 01.09.2026", footPaper:"Full paper submission: 10.11.2026", footDates:"Conference: November 18–19, 2026", rights:"All rights reserved.",
     aboutEyebrow:"About the conference", aboutTitleEm:"50", aboutTitleRest:" years of student science.",
     aboutQuote:"“As the host and organizer of the Conference, the University of Novi Sad, Faculty of Agriculture has a special honor and pleasure to wish a warm welcome to all participants.”",
     aboutP1:"The first Conference for students of agriculture and veterinary medicine with international participation was held in Novi Sad. To the present date, many papers from national and international authors have been presented — from Hungary (Gödöllő, Debrecen), Germany (Kassel), Slovakia (Nitra), Poland (Wrocław, Warsaw), Romania (Timișoara, Cluj, Bucharest, Sibiu), Bulgaria (Plovdiv), Russia (Moscow, Kemerovo), North Macedonia (Skopje, Bitola), Bosnia and Herzegovina (Sarajevo, Banja Luka) and Croatia (Zagreb).",
@@ -333,7 +333,7 @@ const T = {
     regForm:"Google prijava", contactWord:"Kontakt", deadlines:"Rokovi",
     footOrg:"Organizuje Poljoprivredni fakultet, Univerzitet u Novom Sadu",
     footAddr:"Poljoprivredni fakultet, Univerzitet u Novom Sadu — Trg Dositeja Obradovića 8, 21000 Novi Sad, Srbija.",
-    footReg:"Rok za registraciju: 01.09.2026", footPaper:"Slanje radova: 10.11.2026", footDates:"18–19. novembar 2026.", rights:"Sva prava zadržana.",
+    footReg:"Rok za registraciju: 01.09.2026", footPaper:"Slanje radova: 10.11.2026", footDates:"Konferencija: 18–19. novembar 2026.", rights:"Sva prava zadržana.",
     aboutEyebrow:"O konferenciji", aboutTitleEm:"50", aboutTitleRest:" godina studentske nauke.",
     aboutQuote:"„Kao domaćin i organizator konferencije, Univerzitet u Novom Sadu, Poljoprivredni fakultet ima posebnu čast i zadovoljstvo da poželi toplu dobrodošlicu svim učesnicima.“",
     aboutP1:"Prva Konferencija studenata poljoprivrede i veterinarske medicine sa međunarodnim učešćem održana je u Novom Sadu. Do danas su predstavljeni brojni radovi domaćih i inostranih autora — iz Mađarske (Gedele, Debrecin), Nemačke (Kasel), Slovačke (Njitra), Poljske (Vroclav, Varšava), Rumunije (Temišvar, Kluž, Bukurešt, Sibiu), Bugarske (Plovdiv), Rusije (Moskva, Kemerovo), Severne Makedonije (Skoplje, Bitolj), Bosne i Hercegovine (Sarajevo, Banja Luka) i Hrvatske (Zagreb).",
@@ -514,9 +514,12 @@ function About({lang}){
       <div className="eyebrow">— {t.aboutEyebrow}</div>
       <h1 className="about-title serif"><em>{t.aboutTitleEm}</em>{t.aboutTitleRest}</h1>
       <img className="about-photo" src="/media/gallery_2024_12.jpg" alt="Conference audience, Faculty of Agriculture" />
-      <div className="card" style={{marginTop:22}}>
-        <div className="eyebrow" style={{marginBottom:10}}>{t.inMemoriam}</div>
-        <p style={{color:"var(--muted)",fontSize:".95rem"}}>{t.inMemText1}<b style={{color:"var(--pine)"}}>{t.drezgic}</b>{t.inMemText2}</p>
+      <div className="card" style={{marginTop:22,display:"flex",gap:18,alignItems:"center"}}>
+        <img src="/media/logo-faculty.png" alt="Poljoprivredni fakultet, Univerzitet u Novom Sadu" style={{height:74,width:"auto",flexShrink:0}} />
+        <div>
+          <div className="eyebrow" style={{marginBottom:10}}>{t.inMemoriam}</div>
+          <p style={{color:"var(--muted)",fontSize:".95rem"}}>{t.inMemText1}<b style={{color:"var(--pine)"}}>{t.drezgic}</b>{t.inMemText2}</p>
+        </div>
       </div>
     </div>
     <div>
