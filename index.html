@@ -79,7 +79,7 @@
   .ph-cap .c2{font-family:var(--serif);font-size:1.9rem;font-weight:600;line-height:1}
   .float-deadline{position:absolute;right:-14px;bottom:-26px;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:14px 20px;box-shadow:0 14px 34px rgba(18,59,52,.14)}
   .float-deadline .fl{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-  .float-deadline .fv{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--ink);font-weight:600;line-height:1.2}
+  .float-deadline .fv{font-family:var(--serif);font-size:1.3rem;color:var(--pine);font-weight:700;line-height:1.2}
   .fd-row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-top:6px}
   .fd-row+.fd-row{border-top:1px dashed var(--line);padding-top:6px}
   .fd-n{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -374,7 +374,7 @@ function WheatMark({color}){
     </g>
   </svg>;
 }
-function Nav({route,go,lang,setLang,admin,logout}){
+function Nav({route,go,lang,admin,logout}){
   const t=T[lang];
   const [open,setOpen]=useState(false);
   const items=[["home",t.nav.home],["about",t.nav.about],["instructions",t.nav.instructions],["proceedings",t.nav.proceedings],["gallery",t.nav.gallery],["awards",t.nav.awards],["contact",t.nav.contact]];
@@ -386,7 +386,6 @@ function Nav({route,go,lang,setLang,admin,logout}){
       </div>
       <nav className="menu">
         {items.map(([k,l])=><button key={k} className={"link"+(route.name===k?" active":"")} onClick={()=>nav(k)}>{l}</button>)}
-        <div className="lang"><button className={lang==="sr"?"on":""} onClick={()=>setLang("sr")}>SR</button><button className={lang==="en"?"on":""} onClick={()=>setLang("en")}>EN</button></div>
         <a className="pill-cta" href={GFORM} target="_blank" rel="noreferrer">{t.submit} ↗</a>
         <button className={"admin-link"+(route.name==="admin"?"":" dim")} onClick={()=>nav("admin")}>Admin</button>
         {admin && <button className="admin-link dim" onClick={logout}>Log out</button>}
@@ -739,7 +738,7 @@ function routeFromHash(){
 }
 function App(){
   const [route,setRoute]=useState(routeFromHash);
-  const [lang,setLang]=useState("en");
+  const lang="en";
   const [conf,setConf]=useState(null);
   const [admin,setAdmin]=useState(null);
   useEffect(()=>{fetch(API+"/api/conferences").then(r=>r.json()).then(l=>{const c=(l||[]).find(x=>x.status==="open")||(l||[])[0];setConf(c&&c.areas&&c.areas.length?c:FALLBACK_CONF);}).catch(()=>setConf(FALLBACK_CONF));},[]);
@@ -755,7 +754,7 @@ function App(){
   };
   const logout=()=>{setAdmin(null);go({name:"home"});};
   return <div>
-    <Nav route={route} go={go} lang={lang} setLang={setLang} admin={admin} logout={logout} />
+    <Nav route={route} go={go} lang={lang} admin={admin} logout={logout} />
     {route.name==="home" && <Home go={go} lang={lang} conf={conf} />}
     {route.name==="about" && <About lang={lang} />}
     {route.name==="instructions" && <Instructions go={go} lang={lang} />}
