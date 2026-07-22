@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="%23e7c34a"/><g transform="rotate(32 12 12)" fill="%2312403a"><path d="M12 2.6c1.7 1.5 1.7 3.9 0 5.4-1.7-1.5-1.7-3.9 0-5.4z"/><path d="M11.4 10.4C9.4 10.2 7.9 9 7.2 7c2 .2 3.5 1.4 4.2 3.4z"/><path d="M12.6 10.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/><path d="M11.4 14.4C9.4 14.2 7.9 13 7.2 11c2 .2 3.5 1.4 4.2 3.4z"/><path d="M12.6 14.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/><path d="M11.4 18.4C9.4 18.2 7.9 17 7.2 15c2 .2 3.5 1.4 4.2 3.4z"/><path d="M12.6 18.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/><rect x="11.55" y="9" width="0.9" height="12.4" rx="0.45"/></g></svg>'>
+<link rel="icon" type="image/png" href="/media/favicon-conf.png"><circle cx="12" cy="12" r="12" fill="%23e7c34a"/><g transform="rotate(32 12 12)" fill="%2312403a"><path d="M12 2.6c1.7 1.5 1.7 3.9 0 5.4-1.7-1.5-1.7-3.9 0-5.4z"/><path d="M11.4 10.4C9.4 10.2 7.9 9 7.2 7c2 .2 3.5 1.4 4.2 3.4z"/><path d="M12.6 10.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/><path d="M11.4 14.4C9.4 14.2 7.9 13 7.2 11c2 .2 3.5 1.4 4.2 3.4z"/><path d="M12.6 14.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/><path d="M11.4 18.4C9.4 18.2 7.9 17 7.2 15c2 .2 3.5 1.4 4.2 3.4z"/><path d="M12.6 18.4c2-.2 3.5-1.4 4.2-3.4-2 .2-3.5 1.4-4.2 3.4z"/><rect x="11.55" y="9" width="0.9" height="12.4" rx="0.45"/></g></svg>'>
 <title>Student Conference Novi Sad — 50th Golden Jubilee (Nov 18–19, 2026)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +35,7 @@
   .brand .bt{font-family:var(--serif);font-size:1.28rem;line-height:1;color:var(--ink)}
   .brand .bs{font-size:.62rem;letter-spacing:.28em;color:var(--muted);text-transform:uppercase;margin-top:3px}
   nav.menu{display:flex;align-items:center;gap:22px}
-  nav.menu button.link{background:none;border:none;font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);cursor:pointer;padding:6px 0;position:relative}
+  nav.menu button.link{background:none;border:none;font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);cursor:pointer;padding:6px 0;position:relative;white-space:nowrap}
   nav.menu button.link:hover{color:var(--pine-soft)}
   nav.menu button.link.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--gold-deep)}
   .lang{display:flex;border:1px solid var(--line);border-radius:20px;overflow:hidden}
@@ -259,6 +259,10 @@
     .cta-sep{width:auto;height:1px}
     .float-deadline{position:static;margin-top:14px}
   }
+  .brand-logo{height:54px;width:auto;display:block}
+  .foot-logos{display:flex;align-items:center;gap:20px;margin-bottom:12px;flex-wrap:wrap}
+  .foot-logos img{height:56px;width:auto}
+  @media(max-width:960px){ .brand-logo{height:44px} }
 </style>
 </head>
 <body>
@@ -270,6 +274,8 @@ const GFORM = "https://forms.gle/aBic6qB4Xnpw4Ct69";
 const WHEAT = "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1000&q=80";
 const DEFAULT_AREAS = ["Plant production and precision agriculture","Landscape architecture","Fruit growing and horticulture","Plant protection","Animal science","Food quality and safety","Agricultural engineering","Water management","Agricultural economics","Veterinary medicine","Biotechnology"];
 const FALLBACK_CONF = {id:1, areas:DEFAULT_AREAS, status:"open"};
+const AREAS_SR=["Ratarstvo i precizna poljoprivreda","Pejzažna arhitektura","Voćarstvo i hortikultura","Zaštita bilja","Stočarstvo","Kvalitet i bezbednost hrane","Poljoprivredna tehnika","Uređenje voda","Agroekonomija","Veterinarska medicina","Biotehnologija"];
+function areaLabel(a,lang){ if(lang!=="sr") return a; const i=DEFAULT_AREAS.indexOf(a); return i>=0?AREAS_SR[i]:a; }
 
 const fetchContent=(type)=>fetch(API+"/api/content?type="+type).then(r=>{if(!r.ok)throw 0;return r.json();}).catch(()=>fetch("/data/"+type+".json").then(r=>r.ok?r.json():[]).catch(()=>[]));
 const fetchTemplates=()=>fetch(API+"/api/templates").then(r=>{if(!r.ok)throw 0;return r.json();}).catch(()=>fetch("/data/templates.json").then(r=>r.ok?r.json():[]).catch(()=>[]));
@@ -283,9 +289,36 @@ const T = {
     statYears:"Years", statPapers:"Published papers", statCountries:"Participating countries",
     areasEyebrow:"Scientific areas", areasTitle:"Fifty years of research tradition",
     areasSide:"Interdisciplinary exchange between young researchers.",
-    procTitle:"Proceedings books", procSub:"Full conference proceedings by year.", viewAll:"View all", joinEyebrow:"Join us — 2026", registerBefore:"Register before", paperBefore:"Send full paper before",
+    procTitle:"Proceedings books", procSub:"Full conference proceedings by year.", procEmpty:"Proceedings will be added by the organizers.",
+    viewAll:"View all", joinEyebrow:"Join us — 2026", registerBefore:"Register before", paperBefore:"Send full paper before",
     joinTail:"with international participation. Interdisciplinary exchange between young researchers.",
-    regForm:"Google registration form", contactWord:"Contact", deadlines:"Rokovi / Deadlines" },
+    regForm:"Google registration form", contactWord:"Contact", deadlines:"Deadlines",
+    footOrg:"Organized by the Faculty of Agriculture, University of Novi Sad",
+    footAddr:"Faculty of Agriculture, University of Novi Sad — Trg Dositeja Obradovića 8, 21000 Novi Sad, Serbia.",
+    footReg:"Registration deadline: 01.09.2026", footPaper:"Full paper submission: 10.11.2026", footDates:"November 18–19, 2026", rights:"All rights reserved.",
+    aboutEyebrow:"About the conference", aboutTitleEm:"50", aboutTitleRest:" years of student science.",
+    aboutQuote:"“As the host and organizer of the Conference, the University of Novi Sad, Faculty of Agriculture has a special honor and pleasure to wish a warm welcome to all participants.”",
+    aboutP1:"The first Conference for students of agriculture and veterinary medicine with international participation was held in Novi Sad. To the present date, many papers from national and international authors have been presented — from Hungary (Gödöllő, Debrecen), Germany (Kassel), Slovakia (Nitra), Poland (Wrocław, Warsaw), Romania (Timișoara, Cluj, Bucharest, Sibiu), Bulgaria (Plovdiv), Russia (Moscow, Kemerovo), North Macedonia (Skopje, Bitola), Bosnia and Herzegovina (Sarajevo, Banja Luka) and Croatia (Zagreb).",
+    aboutP2a:"Since 2009, papers presented at the Conference are published in a special publication — the ", aboutP2b:"Proceedings of the Conference", aboutP2c:" — where all published papers have all elements of the original scientific paper. Students and mentors who wish to benefit more from the Conference are encouraged to publish their papers in the journal ", aboutP2d:"Contemporary Agriculture", aboutP2e:", published by the University of Novi Sad, Faculty of Agriculture.",
+    milestones:"Milestones",
+    ms1981:"The Faculty Council decides that the Conference is held in memory of academician Dr Petar Drezgić, whose name the Conference prizes bear.",
+    ms2009:"Papers presented at the Conference begin to be published in the official Proceedings, with all elements of the original scientific paper.",
+    ms2026:"Golden Jubilee — the 50th Conference, November 18–19, Novi Sad.",
+    inMemoriam:"In memoriam", inMemText1:"By decision of the Council of the University of Novi Sad, Faculty of Agriculture, made at its fourth meeting on 18 February 1981, the Conference is held in the memory of academician ", drezgic:"Dr Petar Drezgić", inMemText2:", professor — and the prizes awarded at the Conference bear his name.",
+    instrEyebrow:"Author instructions", instrTitle:"How to prepare and submit your paper",
+    quickActions:"Quick actions", regBtn:"Registration", regDeadline:"Registration deadline: 01.09.2026", paperDeadline:"Full paper submission: 10.11.2026", papersEmail:"Papers are submitted by e-mail:", tplBtn:"Template (.docx)", instrBtn:"Instructions",
+    fmtHeading:"Formatting & length",
+    fmt:["Max 6 pages A4 (portrait), single spacing, including tables and figures.","Margins: 2.54 cm on all sides.","Font: Times New Roman, 10 pt, justified, first-line indent 0.6 cm. No pagination."],
+    structHeading:"Structure of the paper",
+    struct:[["Title","Uppercase, bold, 11 pt, centered — placed on the 5th line below the top margin."],["Author(s) & Mentor","Bold, 10 pt, centered. Followed by affiliation (University, Faculty, Department, Country) in small caps."],["Summary","Italic, 10 pt, justified, up to 500 characters — objective, method, results, conclusion."],["Keywords","3–6 words, italic, 10 pt."],["Chapters","INTRODUCTION · MATERIAL AND METHODS · RESULTS AND DISCUSSION · CONCLUSION"],["References","Sorted alphabetically by first author's surname, no numbering, 9 pt."]],
+    tablesHeading:"Tables, figures & equations",
+    tables:["Tables: minimum horizontal lines, 9 pt, placed in the text. Caption ABOVE the table.","Figures: TIF/JPG at 300 dpi, or vector CDR/AI. Caption BELOW the figure.","Equations: use MS Word Equation Editor, no screenshots. Center and number as (1)."],
+    citingHeading:"Citing references",
+    citing:["In text — more than two authors: (Pejić et al., 2013)","In text — two authors: (Stančić and Šahinović, 1995)","References sorted alphabetically by first author's surname, 9 pt."],
+    importantB:"Important.", importantT:" Papers not prepared according to these instructions will not be considered for publishing. The text will not be proof-read — please ensure grammatical correctness.",
+    galleryTitle:"Gallery", gallerySub:"Moments from the conference, year by year.", photosWord:"photos", galEmpty:"Photos will be added by the organizers.",
+    awardsTitle:"Awards", awardsSub:"Best oral presentation and best poster are awarded in each scientific area.", bestOral:"Best oral presentation", bestPoster:"Best poster", awardDesc:"Awarded per scientific area.",
+    contactTitle:"Get in touch", contactSub:"For any questions about registration, papers or the programme.", lEmail:"Email", lWebsite:"Website", lInstagram:"Instagram", lAddress:"Address", addressVal:"Trg Dositeja Obradovića 8, 21000 Novi Sad, Serbia", registerCard:"Register", registerText:"Registration closes 01.09.2026.", facultyName:"Faculty of Agriculture, University of Novi Sad", openMaps:"Open in Google Maps" },
   sr:{ nav:{home:"Početna",about:"O konferenciji",instructions:"Uputstva",proceedings:"Zbornici",gallery:"Galerija",awards:"Nagrade",contact:"Kontakt"},
     submit:"Registracija", badge:"Zlatni jubilej — 50 godina", fifty:"Konferencija studenata",
     leadTail:"poljoprivrede i veterinarske medicine — sa međunarodnim učešćem",
@@ -294,9 +327,36 @@ const T = {
     statYears:"Godina", statPapers:"Objavljenih radova", statCountries:"Zemalja učesnica",
     areasEyebrow:"Naučne oblasti", areasTitle:"Pedeset godina istraživačke tradicije",
     areasSide:"Interdisciplinarna razmena među mladim istraživačima.",
-    procTitle:"Zbornici radova", procSub:"Kompletni zbornici konferencije po godinama.", viewAll:"Prikaži sve", joinEyebrow:"Pridruži nam se — 2026", registerBefore:"Registruj se do", paperBefore:"Pošalji rad do",
+    procTitle:"Zbornici radova", procSub:"Kompletni zbornici konferencije po godinama.", procEmpty:"Zbornike će dodati organizatori.",
+    viewAll:"Prikaži sve", joinEyebrow:"Pridruži nam se — 2026", registerBefore:"Registruj se do", paperBefore:"Pošalji rad do",
     joinTail:"sa međunarodnim učešćem. Interdisciplinarna razmena među mladim istraživačima.",
-    regForm:"Google prijava", contactWord:"Kontakt", deadlines:"Rokovi / Deadlines" }
+    regForm:"Google prijava", contactWord:"Kontakt", deadlines:"Rokovi",
+    footOrg:"Organizuje Poljoprivredni fakultet, Univerzitet u Novom Sadu",
+    footAddr:"Poljoprivredni fakultet, Univerzitet u Novom Sadu — Trg Dositeja Obradovića 8, 21000 Novi Sad, Srbija.",
+    footReg:"Rok za registraciju: 01.09.2026", footPaper:"Slanje radova: 10.11.2026", footDates:"18–19. novembar 2026.", rights:"Sva prava zadržana.",
+    aboutEyebrow:"O konferenciji", aboutTitleEm:"50", aboutTitleRest:" godina studentske nauke.",
+    aboutQuote:"„Kao domaćin i organizator konferencije, Univerzitet u Novom Sadu, Poljoprivredni fakultet ima posebnu čast i zadovoljstvo da poželi toplu dobrodošlicu svim učesnicima.“",
+    aboutP1:"Prva Konferencija studenata poljoprivrede i veterinarske medicine sa međunarodnim učešćem održana je u Novom Sadu. Do danas su predstavljeni brojni radovi domaćih i inostranih autora — iz Mađarske (Gedele, Debrecin), Nemačke (Kasel), Slovačke (Njitra), Poljske (Vroclav, Varšava), Rumunije (Temišvar, Kluž, Bukurešt, Sibiu), Bugarske (Plovdiv), Rusije (Moskva, Kemerovo), Severne Makedonije (Skoplje, Bitolj), Bosne i Hercegovine (Sarajevo, Banja Luka) i Hrvatske (Zagreb).",
+    aboutP2a:"Od 2009. godine radovi predstavljeni na konferenciji objavljuju se u posebnoj publikaciji — ", aboutP2b:"Zborniku radova konferencije", aboutP2c:" — u kojoj svi objavljeni radovi imaju sve elemente originalnog naučnog rada. Studente i mentore koji žele da izvuku više iz konferencije podstičemo da svoje radove objave u časopisu ", aboutP2d:"Savremena poljoprivreda", aboutP2e:", koji izdaje Univerzitet u Novom Sadu, Poljoprivredni fakultet.",
+    milestones:"Ključni datumi",
+    ms1981:"Savet Fakulteta donosi odluku da se konferencija održava u znak sećanja na akademika dr Petra Drezgića, čije ime nose nagrade konferencije.",
+    ms2009:"Radovi predstavljeni na konferenciji počinju da se objavljuju u zvaničnom Zborniku, sa svim elementima originalnog naučnog rada.",
+    ms2026:"Zlatni jubilej — 50. konferencija, 18–19. novembar, Novi Sad.",
+    inMemoriam:"In memoriam", inMemText1:"Odlukom Saveta Univerziteta u Novom Sadu, Poljoprivrednog fakulteta, donetom na četvrtoj sednici 18. februara 1981. godine, konferencija se održava u znak sećanja na akademika ", drezgic:"dr Petra Drezgića", inMemText2:", profesora — a nagrade koje se dodeljuju na konferenciji nose njegovo ime.",
+    instrEyebrow:"Uputstvo za autore", instrTitle:"Kako pripremiti i poslati rad",
+    quickActions:"Brze akcije", regBtn:"Registracija", regDeadline:"Rok za registraciju: 01.09.2026", paperDeadline:"Slanje radova (full paper): 10.11.2026", papersEmail:"Radovi se šalju na e-mail:", tplBtn:"Šablon (.docx)", instrBtn:"Uputstvo",
+    fmtHeading:"Format i dužina",
+    fmt:["Najviše 6 strana A4 (uspravno), prored 1, uključujući tabele i slike.","Margine: 2,54 cm sa svih strana.","Font: Times New Roman, 10 pt, obostrano poravnanje, uvlačenje prvog reda 0,6 cm. Bez numeracije stranica."],
+    structHeading:"Struktura rada",
+    struct:[["Naslov","Velika slova, bold, 11 pt, centrirano — u petom redu ispod gornje margine."],["Autor(i) i mentor","Bold, 10 pt, centrirano. Zatim afilijacija (Univerzitet, Fakultet, Departman, Država) malim verzalom."],["Sažetak","Kurziv, 10 pt, obostrano, do 500 karaktera — cilj, materijal i metod, rezultati, zaključak."],["Ključne reči","3–6 reči, kurziv, 10 pt."],["Poglavlja","UVOD · MATERIJAL I METODE · REZULTATI I DISKUSIJA · ZAKLJUČAK"],["Literatura","Po abecednom redu prezimena prvog autora, bez numeracije, 9 pt."]],
+    tablesHeading:"Tabele, slike i jednačine",
+    tables:["Tabele: minimalne horizontalne linije, 9 pt, u tekstu. Naslov IZNAD tabele.","Slike: TIF/JPG na 300 dpi ili vektor CDR/AI. Naslov ISPOD slike.","Jednačine: koristiti MS Word Equation Editor, bez slika ekrana. Centrirati i numerisati kao (1)."],
+    citingHeading:"Citiranje literature",
+    citing:["U tekstu — više od dva autora: (Pejić i sar., 2013)","U tekstu — dva autora: (Stančić i Šahinović, 1995)","Literatura po abecednom redu prezimena prvog autora, 9 pt."],
+    importantB:"Važno.", importantT:" Radovi koji nisu pripremljeni u skladu sa ovim uputstvom neće biti razmatrani za objavljivanje. Tekst se ne lektoriše — molimo autore da vode računa o gramatičkoj ispravnosti.",
+    galleryTitle:"Galerija", gallerySub:"Trenuci sa konferencije, godinu po godinu.", photosWord:"fotografija", galEmpty:"Fotografije će dodati organizatori.",
+    awardsTitle:"Nagrade", awardsSub:"Najbolje usmeno izlaganje i najbolji poster nagrađuju se u svakoj naučnoj oblasti.", bestOral:"Najbolje usmeno izlaganje", bestPoster:"Najbolji poster", awardDesc:"Dodeljuje se po naučnoj oblasti.",
+    contactTitle:"Kontaktirajte nas", contactSub:"Za sva pitanja o registraciji, radovima ili programu.", lEmail:"E-mail", lWebsite:"Sajt", lInstagram:"Instagram", lAddress:"Adresa", addressVal:"Trg Dositeja Obradovića 8, 21000 Novi Sad, Srbija", registerCard:"Registracija", registerText:"Registracija se zatvara 01.09.2026.", facultyName:"Poljoprivredni fakultet, Univerzitet u Novom Sadu", openMaps:"Otvori u Google mapama" }
 };
 
 function WheatMark({color}){
@@ -322,8 +382,7 @@ function Nav({route,go,lang,setLang,admin,logout}){
   return (
     <header className="nav" style={{position:"sticky"}}><div className="wrap nav-in">
       <div className="brand" onClick={()=>nav("home")}>
-        <div className="mark"><WheatMark /></div>
-        <div><div className="bt">Student Conference</div><div className="bs">Novi Sad</div></div>
+        <img className="brand-logo" src="/media/logo-conference.png" alt="Student Conference Novi Sad" />
       </div>
       <nav className="menu">
         {items.map(([k,l])=><button key={k} className={"link"+(route.name===k?" active":"")} onClick={()=>nav(k)}>{l}</button>)}
@@ -380,7 +439,7 @@ function Areas({go,lang,conf}){
   const t=T[lang]; const areas=conf?.areas||[];
   return (<section className="block"><div className="wrap">
     <div className="sec-head head-row"><div><div className="eyebrow">— {t.areasEyebrow}</div><h2 className="serif">{t.areasTitle}</h2></div><div className="side">{t.areasSide}</div></div>
-    <div className="areas">{areas.map((a,i)=>(<div className="area" key={a}><div><span className="num">{String(i+1).padStart(2,"0")}</span><div className="nm serif">{a}</div></div></div>))}</div>
+    <div className="areas">{areas.map((a,i)=>(<div className="area" key={a}><div><span className="num">{String(i+1).padStart(2,"0")}</span><div className="nm serif">{areaLabel(a,lang)}</div></div></div>))}</div>
   </div></section>);
 }
 
@@ -417,7 +476,7 @@ function ProcSection({go,lang,limit}){
     <div className="works" style={limit?{gridTemplateColumns:"repeat(3,1fr)"}:{}}>
       {shown.map(p=><ProcCard key={p.id} p={p} />)}
     </div>
-    {!limit && list.length===0 && <div className="empty">Proceedings will be added by the organizers.</div>}
+    {!limit && list.length===0 && <div className="empty">{t.procEmpty}</div>}
   </div></section>);
 }
 
@@ -449,71 +508,55 @@ function Home({go,lang,conf}){
 }
 
 function About({lang}){
+  const t=T[lang];
   return <section className="page"><div className="wrap"><div className="about-grid">
     <div>
-      <div className="eyebrow">— About the conference</div>
-      <h1 className="about-title serif"><em>50</em> years of student science.</h1>
+      <div className="eyebrow">— {t.aboutEyebrow}</div>
+      <h1 className="about-title serif"><em>{t.aboutTitleEm}</em>{t.aboutTitleRest}</h1>
       <img className="about-photo" src="/media/gallery_2024_12.jpg" alt="Conference audience, Faculty of Agriculture" />
       <div className="card" style={{marginTop:22}}>
-        <div className="eyebrow" style={{marginBottom:10}}>In memoriam</div>
-        <p style={{color:"var(--muted)",fontSize:".95rem"}}>By decision of the Council of the University of Novi Sad, Faculty of Agriculture, made at its fourth meeting on 18 February 1981, the Conference is held in the memory of academician <b style={{color:"var(--pine)"}}>Dr Petar Drezgić</b>, professor — and the prizes awarded at the Conference bear his name.</p>
+        <div className="eyebrow" style={{marginBottom:10}}>{t.inMemoriam}</div>
+        <p style={{color:"var(--muted)",fontSize:".95rem"}}>{t.inMemText1}<b style={{color:"var(--pine)"}}>{t.drezgic}</b>{t.inMemText2}</p>
       </div>
     </div>
     <div>
-      <p className="quote">"As the host and organizer of the Conference, the University of Novi Sad, Faculty of Agriculture has a special honor and pleasure to wish a warm welcome to all participants."</p>
-      <p className="about-p">The first Conference for students of agriculture and veterinary medicine with international participation was held in Novi Sad. To the present date, many papers from national and international authors have been presented — from Hungary (Gödöllő, Debrecen), Germany (Kassel), Slovakia (Nitra), Poland (Wrocław, Warsaw), Romania (Timișoara, Cluj, Bucharest, Sibiu), Bulgaria (Plovdiv), Russia (Moscow, Kemerovo), North Macedonia (Skopje, Bitola), Bosnia and Herzegovina (Sarajevo, Banja Luka) and Croatia (Zagreb).</p>
-      <p className="about-p">Since 2009, papers presented at the Conference are published in a special publication — the <b style={{color:"var(--pine)"}}>Proceedings of the Conference</b> — where all published papers have all elements of the original scientific paper. Students and mentors who wish to benefit more from the Conference are encouraged to publish their papers in the journal <i>Contemporary Agriculture</i>, published by the University of Novi Sad, Faculty of Agriculture.</p>
-      <h2 className="hist-h serif">Milestones</h2>
+      <p className="quote">{t.aboutQuote}</p>
+      <p className="about-p">{t.aboutP1}</p>
+      <p className="about-p">{t.aboutP2a}<b style={{color:"var(--pine)"}}>{t.aboutP2b}</b>{t.aboutP2c}<i>{t.aboutP2d}</i>{t.aboutP2e}</p>
+      <h2 className="hist-h serif">{t.milestones}</h2>
       <div className="timeline">
-        <div className="tl-item"><div className="tl-year serif">1981</div><div className="tl-desc">The Faculty Council decides that the Conference is held in memory of academician Dr Petar Drezgić, whose name the Conference prizes bear.</div></div>
-        <div className="tl-item"><div className="tl-year serif">2009</div><div className="tl-desc">Papers presented at the Conference begin to be published in the official Proceedings, with all elements of the original scientific paper.</div></div>
-        <div className="tl-item"><div className="tl-year serif">2026</div><div className="tl-desc">Golden Jubilee — the 50th Conference, November 18–19, Novi Sad.</div></div>
+        <div className="tl-item"><div className="tl-year serif">1981</div><div className="tl-desc">{t.ms1981}</div></div>
+        <div className="tl-item"><div className="tl-year serif">2009</div><div className="tl-desc">{t.ms2009}</div></div>
+        <div className="tl-item"><div className="tl-year serif">2026</div><div className="tl-desc">{t.ms2026}</div></div>
       </div>
     </div>
   </div></div></section>;
 }
 
 function Instructions({go,lang}){
+  const t=T[lang];
   const [tpls,setTpls]=useState([]);
   useEffect(()=>{fetchTemplates().then(setTpls);},[]);
-  const struct=[["Title","Uppercase, bold, 11 pt, centered — placed on the 5th line below the top margin."],
-    ["Author(s) & Mentor","Bold, 10 pt, centered. Followed by affiliation (University, Faculty, Department, Country) in small caps."],
-    ["Summary","Italic, 10 pt, justified, up to 500 characters — objective, method, results, conclusion."],
-    ["Keywords","3–6 words, italic, 10 pt."],
-    ["Chapters","INTRODUCTION · MATERIAL AND METHODS · RESULTS AND DISCUSSION · CONCLUSION"],
-    ["References","Sorted alphabetically by first author's surname, no numbering, 9 pt."]];
   return <section className="page"><div className="wrap">
-    <div className="eyebrow">— Author instructions</div>
-    <h1 className="serif" style={{maxWidth:760}}>How to prepare and submit your paper</h1>
+    <div className="eyebrow">— {t.instrEyebrow}</div>
+    <h1 className="serif" style={{maxWidth:760}}>{t.instrTitle}</h1>
     <div className="instr-grid" style={{marginTop:40}}>
       <aside className="quick">
-        <div className="qh">Quick actions</div>
-        <a className="dark-btn" href={GFORM} target="_blank" rel="noreferrer" style={{textDecoration:"none"}}>Registration <span>→</span></a>
-        <div className="qmeta"><p>Registration deadline: 01.09.2026</p><p>Full paper submission: 10.11.2026</p><p><b>Papers are submitted by e-mail:</b></p><p><a href="mailto:smotra@polj.edu.rs" style={{color:"var(--pine)",textDecoration:"underline"}}>smotra@polj.edu.rs</a></p></div>
-        <div className="dlrow">{tpls.map(tp=>(<a key={tp.name} className="btn btn-line btn-sm" href={API+tp.url}>⬇ {tp.name.includes("Template")?"Template (.docx)":"Instructions"}</a>))}</div>
+        <div className="qh">{t.quickActions}</div>
+        <a className="dark-btn" href={GFORM} target="_blank" rel="noreferrer" style={{textDecoration:"none"}}>{t.regBtn} <span>→</span></a>
+        <div className="qmeta"><p>{t.regDeadline}</p><p>{t.paperDeadline}</p><p><b>{t.papersEmail}</b></p><p><a href="mailto:smotra@polj.edu.rs" style={{color:"var(--pine)",textDecoration:"underline"}}>smotra@polj.edu.rs</a></p></div>
+        <div className="dlrow">{tpls.map(tp=>(<a key={tp.name} className="btn btn-line btn-sm" href={API+tp.url}>⬇ {tp.name.includes("Template")?t.tplBtn:t.instrBtn}</a>))}</div>
       </aside>
       <div>
-        <h3 className="instr-h serif">Formatting &amp; length</h3>
-        <ul className="instr-list">
-          <li>Max 6 pages A4 (portrait), single spacing, including tables and figures.</li>
-          <li>Margins: 2.54 cm on all sides.</li>
-          <li>Font: Times New Roman, 10 pt, justified, first-line indent 0.6 cm. No pagination.</li>
-        </ul>
-        <h3 className="instr-h serif">Structure of the paper</h3>
-        <div className="subcards">{struct.map(([h,p])=>(<div className="subcard" key={h}><h4>{h}</h4><p>{p}</p></div>))}</div>
-        <h3 className="instr-h serif">Tables, figures &amp; equations</h3>
-        <ul className="instr-list">
-          <li>Tables: minimum horizontal lines, 9 pt, placed in the text. Caption ABOVE the table.</li>
-          <li>Figures: TIF/JPG at 300 dpi, or vector CDR/AI. Caption BELOW the figure.</li>
-          <li>Equations: use MS Word Equation Editor, no screenshots. Center and number as (1).</li>
-        </ul>
-        <h3 className="instr-h serif">Citing references</h3>
-        <ul className="instr-list">
-          <li>In text — more than two authors: (Pejić et al., 2013)</li>
-          <li>In text — two authors: (Stančić and Šahinović, 1995)</li>
-          <li>References sorted alphabetically by first author's surname, 9 pt.</li>
-        </ul>
-        <div className="callout"><b>Important.</b> Papers not prepared according to these instructions will not be considered for publishing. The text will not be proof-read — please ensure grammatical correctness.</div>
+        <h3 className="instr-h serif">{t.fmtHeading}</h3>
+        <ul className="instr-list">{t.fmt.map((x,i)=><li key={i}>{x}</li>)}</ul>
+        <h3 className="instr-h serif">{t.structHeading}</h3>
+        <div className="subcards">{t.struct.map(([h,d])=>(<div className="subcard" key={h}><h4>{h}</h4><p>{d}</p></div>))}</div>
+        <h3 className="instr-h serif">{t.tablesHeading}</h3>
+        <ul className="instr-list">{t.tables.map((x,i)=><li key={i}>{x}</li>)}</ul>
+        <h3 className="instr-h serif">{t.citingHeading}</h3>
+        <ul className="instr-list">{t.citing.map((x,i)=><li key={i}>{x}</li>)}</ul>
+        <div className="callout"><b>{t.importantB}</b>{t.importantT}</div>
       </div>
     </div>
   </div></section>;
@@ -521,19 +564,20 @@ function Instructions({go,lang}){
 
 
 function Gallery({lang}){
+  const t=T[lang];
   const [photos,setPhotos]=useState(null);
   useEffect(()=>{fetchContent("photo").then(setPhotos);},[]);
   const list=photos||[];
   const years=[...new Set(list.map(p=>p.year||"—"))].sort().reverse();
   return <section className="page"><div className="wrap">
-    <div className="eyebrow">— {T[lang].nav.gallery}</div><h1 className="serif">Gallery</h1>
-    <p className="intro">Moments from the conference, year by year.</p>
-    {!photos ? <p style={{color:"var(--muted)"}}>Loading…</p> :
-     list.length===0 ? <div className="empty">Photos will be added by the organizers.</div> :
+    <div className="eyebrow">— {t.nav.gallery}</div><h1 className="serif">{t.galleryTitle}</h1>
+    <p className="intro">{t.gallerySub}</p>
+    {!photos ? <p style={{color:"var(--muted)"}}>…</p> :
+     list.length===0 ? <div className="empty">{t.galEmpty}</div> :
      years.map(y=>{
        const ph=list.filter(p=>(p.year||"—")===y);
        return <div className="g-group" key={y}>
-         <div className="g-year">{y} <span className="g-count">{ph.length} photos</span></div>
+         <div className="g-year">{y} <span className="g-count">{ph.length} {t.photosWord}</span></div>
          <div className="g-grid">
            {ph.map(p=><a key={p.id} className="gph" href={API+p.image_url} target="_blank" rel="noreferrer"
              style={p.image_url?{backgroundImage:`url(${API+p.image_url})`}:{}} title={p.extra||("SMOTRA "+y)}></a>)}
@@ -544,37 +588,39 @@ function Gallery({lang}){
 }
 
 function Awards({lang}){
+  const t=T[lang];
   const [aw,setAw]=useState(null);
   useEffect(()=>{fetchContent("award").then(setAw);},[]);
   const list=aw||[];
   return <section className="page"><div className="wrap">
-    <div className="eyebrow">— {T[lang].nav.awards}</div><h1 className="serif">Awards</h1>
-    <p className="intro">Best oral presentation and best poster are awarded in each scientific area.</p>
+    <div className="eyebrow">— {t.nav.awards}</div><h1 className="serif">{t.awardsTitle}</h1>
+    <p className="intro">{t.awardsSub}</p>
     {list.length>0 ? <div className="adm-cards">{list.map(a=>(<div className="adm-card" key={a.id}><div className="lbl">{[a.year,a.kind].filter(Boolean).join(" · ")}</div><div className="t serif">{a.title}</div><div className="a">{a.authors}</div><div className="ar">{[a.area,a.extra].filter(Boolean).join(" — ")}</div></div>))}</div>
-      : <div className="grid2"><div className="card"><div className="serif" style={{fontSize:"1.4rem",marginBottom:8}}>🥇 Best oral presentation</div><p style={{color:"var(--muted)"}}>Awarded per scientific area.</p></div><div className="card"><div className="serif" style={{fontSize:"1.4rem",marginBottom:8}}>🖼 Best poster</div><p style={{color:"var(--muted)"}}>Awarded per scientific area.</p></div></div>}
+      : <div className="grid2"><div className="card"><div className="serif" style={{fontSize:"1.4rem",marginBottom:8}}>🥇 {t.bestOral}</div><p style={{color:"var(--muted)"}}>{t.awardDesc}</p></div><div className="card"><div className="serif" style={{fontSize:"1.4rem",marginBottom:8}}>🖼 {t.bestPoster}</div><p style={{color:"var(--muted)"}}>{t.awardDesc}</p></div></div>}
   </div></section>;
 }
 
 function Contact({lang}){
-  const MAP_Q="Poljoprivredni fakultet, Trg Dositeja Obradovi\u0107a 8, 21000 Novi Sad";
+  const t=T[lang];
+  const MAP_Q="Poljoprivredni fakultet, Trg Dositeja Obradovića 8, 21000 Novi Sad";
   return <section className="page"><div className="wrap">
-    <div className="eyebrow">— {T[lang].nav.contact}</div><h1 className="serif">Get in touch</h1>
-    <p className="intro">For any questions about registration, papers or the programme.</p>
+    <div className="eyebrow">— {t.nav.contact}</div><h1 className="serif">{t.contactTitle}</h1>
+    <p className="intro">{t.contactSub}</p>
     <div className="grid2">
       <div className="card"><div className="info-list">
-        <div className="r"><b>Email</b><span>smotra@polj.edu.rs</span></div>
-        <div className="r"><b>Website</b><span>polj.uns.ac.rs</span></div>
-        <div className="r"><b>Instagram</b><span>@student_conference_novisad</span></div>
-        <div className="r"><b>Address</b><span>Trg Dositeja Obradovića 8, 21000 Novi Sad, Serbia</span></div>
+        <div className="r"><b>{t.lEmail}</b><span>smotra@polj.edu.rs</span></div>
+        <div className="r"><b>{t.lWebsite}</b><span>polj.uns.ac.rs</span></div>
+        <div className="r"><b>{t.lInstagram}</b><span>@student_conference_novisad</span></div>
+        <div className="r"><b>{t.lAddress}</b><span>{t.addressVal}</span></div>
       </div></div>
-      <div className="card"><div className="serif" style={{fontSize:"1.4rem",marginBottom:10}}>Register</div><p style={{color:"var(--muted)",marginBottom:18}}>Registration closes 01.09.2026.</p><a className="btn btn-gold" href="https://forms.gle/aBic6qB4Xnpw4Ct69" target="_blank" rel="noreferrer">Google registration form ↗</a></div>
+      <div className="card"><div className="serif" style={{fontSize:"1.4rem",marginBottom:10}}>{t.registerCard}</div><p style={{color:"var(--muted)",marginBottom:18}}>{t.registerText}</p><a className="btn btn-gold" href="https://forms.gle/aBic6qB4Xnpw4Ct69" target="_blank" rel="noreferrer">{t.regForm} ↗</a></div>
     </div>
     <div className="card map-card" style={{marginTop:20,padding:0,overflow:"hidden"}}>
       <iframe title="Faculty of Agriculture, Novi Sad" src={"https://maps.google.com/maps?q="+encodeURIComponent(MAP_Q)+"&z=16&ie=UTF8&output=embed"}
         style={{width:"100%",height:420,border:0,display:"block"}} loading="lazy" allowFullScreen referrerPolicy="no-referrer-when-downgrade"></iframe>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:12,flexWrap:"wrap",padding:"16px 22px"}}>
-        <div><b style={{color:"var(--pine)"}}>📍 Faculty of Agriculture, University of Novi Sad</b><br/><span style={{color:"var(--muted)",fontSize:".9rem"}}>Trg Dositeja Obradovića 8, 21000 Novi Sad, Serbia</span></div>
-        <a className="btn btn-line btn-sm" href={"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(MAP_Q)} target="_blank" rel="noreferrer">Open in Google Maps ↗</a>
+        <div><b style={{color:"var(--pine)"}}>📍 {t.facultyName}</b><br/><span style={{color:"var(--muted)",fontSize:".9rem"}}>{t.addressVal}</span></div>
+        <a className="btn btn-line btn-sm" href={"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(MAP_Q)} target="_blank" rel="noreferrer">{t.openMaps} ↗</a>
       </div>
     </div>
   </div></section>;
@@ -670,11 +716,17 @@ function Admin({admin,setAdmin,conf}){
 function Footer({lang}){
   const t=T[lang];
   return <footer><div className="wrap"><div className="fgrid">
-    <div><div className="brand"><div className="mark" style={{background:"var(--pine)"}}><WheatMark color="#e7c34a" /></div><div><div className="bt serif">Student Conference</div><div className="bs">Novi Sad</div></div></div>
-      <p className="addr">Poljoprivredni fakultet, Univerzitet u Novom Sadu — Trg Dositeja Obradovića 8, 21000 Novi Sad, Srbija.</p></div>
+    <div>
+      <div className="foot-logos">
+        <img src="/media/logo-conference.png" alt="Student Conference Novi Sad" />
+        <img src="/media/logo-faculty.png" alt="Poljoprivredni fakultet, Univerzitet u Novom Sadu" />
+      </div>
+      <p className="addr">{t.footOrg}</p>
+      <p className="addr" style={{marginTop:6}}>{t.footAddr}</p>
+    </div>
     <div className="fcol"><h4>{t.contactWord}</h4><p>smotra@polj.edu.rs</p><p>polj.uns.ac.rs</p><p>@student_conference_novisad</p></div>
-    <div className="fcol"><h4>{t.deadlines}</h4><p>Registration deadline: 01.09.2026</p><p>Full paper submission: 10.11.2026</p><p>November 18–19, 2026</p></div>
-  </div><div className="copy">© 2026 Student Conference — All rights reserved.</div></div></footer>;
+    <div className="fcol"><h4>{t.deadlines}</h4><p>{t.footReg}</p><p>{t.footPaper}</p><p>{t.footDates}</p></div>
+  </div><div className="copy">© 2026 Student Conference — {t.rights}</div></div></footer>;
 }
 
 const ROUTES=["home","about","instructions","proceedings","gallery","awards","contact","admin"];
