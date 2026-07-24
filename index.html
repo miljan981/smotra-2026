@@ -259,10 +259,12 @@
     .cta-sep{width:auto;height:1px}
     .float-deadline{position:static;margin-top:14px}
   }
-  .brand-logo{height:54px;width:auto;display:block}
+  .brand-logo{height:50px;width:auto;display:block}
+  .brand-faculty{height:48px}
+  .brand-div{width:1px;height:36px;background:var(--line);flex-shrink:0}
   .foot-logos{display:flex;align-items:center;gap:20px;margin-bottom:12px;flex-wrap:wrap}
   .foot-logos img{height:56px;width:auto}
-  @media(max-width:960px){ .brand-logo{height:44px} }
+  @media(max-width:960px){ .brand-logo{height:40px} .brand-faculty{height:38px} .brand-div{height:28px} }
 </style>
 </head>
 <body>
@@ -345,6 +347,8 @@ function Nav({route,go,lang,admin,logout}){
     <header className="nav" style={{position:"sticky"}}><div className="wrap nav-in">
       <div className="brand" onClick={()=>nav("home")}>
         <img className="brand-logo" src="/media/logo-conference.png" alt="Student Conference Novi Sad" />
+        <span className="brand-div"></span>
+        <img className="brand-logo brand-faculty" src="/media/logo-faculty.png" alt="Faculty of Agriculture, University of Novi Sad" />
       </div>
       <nav className="menu">
         {items.map(([k,l])=><button key={k} className={"link"+(route.name===k?" active":"")} onClick={()=>nav(k)}>{l}</button>)}
