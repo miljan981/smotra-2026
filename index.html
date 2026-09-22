@@ -309,7 +309,7 @@ const T = {
     regForm:"Google registration form", contactWord:"Contact", deadlines:"Deadlines",
     footOrg:"Organized by the Faculty of Agriculture, University of Novi Sad",
     footAddr:"Faculty of Agriculture, University of Novi Sad — Trg Dositeja Obradovića 8, 21000 Novi Sad, Serbia.",
-    footReg:"Registration deadline (extended): 20.09.2026", footPaper:"Full paper submission: 10.11.2026", footDates:"Conference: November 18–19, 2026", rights:"All rights reserved.",
+    footReg:"Registration deadline (extended): 10.10.2026", footPaper:"Full paper submission: 10.11.2026", footDates:"Conference: November 18–19, 2026", rights:"All rights reserved.",
     aboutEyebrow:"About the conference", aboutTitleEm:"50", aboutTitleRest:" years of student science.",
     aboutQuote:"“As the host and organizer of the Conference, the University of Novi Sad, Faculty of Agriculture has a special honor and pleasure to wish a warm welcome to all participants.”",
     aboutP1:"The first Conference for students of agriculture and veterinary medicine with international participation was held in Novi Sad. To the present date, many papers from national and international authors have been presented — from Hungary (Gödöllő, Debrecen), Germany (Kassel), Slovakia (Nitra), Poland (Wrocław, Warsaw), Romania (Timișoara, Cluj, Bucharest, Sibiu), Bulgaria (Plovdiv), Russia (Moscow, Kemerovo), North Macedonia (Skopje, Bitola), Bosnia and Herzegovina (Sarajevo, Banja Luka) and Croatia (Zagreb).",
@@ -320,7 +320,7 @@ const T = {
     ms2026:"Golden Jubilee — the 50th Conference, November 18–19, Novi Sad.",
     inMemoriam:"In memoriam", inMemText1:"By decision of the Council of the University of Novi Sad, Faculty of Agriculture, made at its fourth meeting on 18 February 1981, the Conference is held in the memory of academician ", drezgic:"Dr Petar Drezgić", inMemText2:", professor — and the prizes awarded at the Conference bear his name.",
     instrEyebrow:"Author instructions", instrTitle:"How to prepare and submit your paper",
-    quickActions:"Quick actions", regBtn:"Registration", regDeadline:"Registration deadline (extended): 20.09.2026", paperDeadline:"Full paper submission: 10.11.2026", papersEmail:"Papers are submitted by e-mail:", tplBtn:"Template (.docx)", instrBtn:"Instructions",
+    quickActions:"Quick actions", regBtn:"Registration", regDeadline:"Registration deadline (extended): 10.10.2026", paperDeadline:"Full paper submission: 10.11.2026", papersEmail:"Papers are submitted by e-mail:", tplBtn:"Template (.docx)", instrBtn:"Instructions",
     fmtHeading:"Formatting & length",
     fmt:["Max 6 pages A4 (portrait), single spacing, including tables and figures.","Margins: 2.54 cm on all sides.","Font: Times New Roman, 10 pt, justified, first-line indent 0.6 cm. No pagination."],
     structHeading:"Structure of the paper",
@@ -332,7 +332,7 @@ const T = {
     importantB:"Important.", importantT:" Papers not prepared according to these instructions will not be considered for publishing. The text will not be proof-read — please ensure grammatical correctness.",
     galleryTitle:"Gallery", gallerySub:"Moments from the conference, year by year.", photosWord:"photos", galEmpty:"Photos will be added by the organizers.",
     awardsTitle:"Awards", awardsSub:"Best oral presentation and best poster are awarded in each scientific area.", bestOral:"Best oral presentation", bestPoster:"Best poster", awardDesc:"Awarded per scientific area.",
-    contactTitle:"Get in touch", contactSub:"For any questions about registration, papers or the programme.", lEmail:"Email", lWebsite:"Website", lInstagram:"Instagram", lAddress:"Address", addressVal:"Trg Dositeja Obradovića 8, 21000 Novi Sad, Serbia", registerCard:"Register", registerText:"Registration deadline extended to 20.09.2026.", facultyName:"Faculty of Agriculture, University of Novi Sad", openMaps:"Open in Google Maps" }
+    contactTitle:"Get in touch", contactSub:"For any questions about registration, papers or the programme.", lEmail:"Email", lWebsite:"Website", lInstagram:"Instagram", lAddress:"Address", addressVal:"Trg Dositeja Obradovića 8, 21000 Novi Sad, Serbia", registerCard:"Register", registerText:"Registration deadline extended to 10.10.2026.", facultyName:"Faculty of Agriculture, University of Novi Sad", openMaps:"Open in Google Maps" }
 };
 
 function WheatMark({color}){
@@ -400,7 +400,7 @@ function Hero({go,lang}){
       </div>
       <div className="float-deadline">
         <div className="fl">{t.deadline}</div>
-        <div className="fd-row"><span className="fd-n">{t.dlReg} <span className="ext-tag">Extended</span></span><span className="fv">20.09.2026.</span></div>
+        <div className="fd-row"><span className="fd-n">{t.dlReg} <span className="ext-tag">Extended</span></span><span className="fv">10.10.2026.</span></div>
         <div className="fd-row"><span className="fd-n">{t.dlPaper}</span><span className="fv">10.11.2026.</span></div>
       </div>
     </div>
@@ -471,7 +471,7 @@ function CTA({go,lang}){
   return (<section className="cta"><div className="wrap"><div className="cta-box"><div className="cta-grid">
     <div><div className="eyebrow gold">{t.joinEyebrow}</div>
       <div className="cta-deadlines">
-        <h2 className="serif">{t.registerBefore}<span className="date">20.09.2026. <span className="ext-tag ext-cta">Extended</span></span></h2>
+        <h2 className="serif">{t.registerBefore}<span className="date">10.10.2026. <span className="ext-tag ext-cta">Extended</span></span></h2>
         <div className="cta-sep"></div>
         <h2 className="serif">{t.paperBefore}<span className="date">10.11.2026.</span></h2>
       </div>
