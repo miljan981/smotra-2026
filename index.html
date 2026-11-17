@@ -364,6 +364,7 @@ function Nav({route,go,lang,admin,logout}){
       </div>
       <nav className="menu">
         {items.map(([k,l])=><button key={k} className={"link"+(route.name===k?" active":"")} onClick={()=>nav(k)}>{l}</button>)}
+        <a className="link" href="/media/agenda.pdf" target="_blank" rel="noreferrer" style={{textDecoration:"none"}}>Agenda</a>
         <a className="pill-cta" href={GFORM} target="_blank" rel="noreferrer">{t.submit} ↗</a>
         <button className={"admin-link"+(route.name==="admin"?"":" dim")} onClick={()=>nav("admin")}>Admin</button>
         {admin && <button className="admin-link dim" onClick={logout}>Log out</button>}
@@ -371,6 +372,7 @@ function Nav({route,go,lang,admin,logout}){
       </nav>
       <div className={"mmenu"+(open?" open":"")}>
         {items.map(([k,l])=><button key={k} onClick={()=>nav(k)}>{l}</button>)}
+        <a href="/media/agenda.pdf" target="_blank" rel="noreferrer" style={{display:"block",width:"100%",textAlign:"left",borderBottom:"1px solid var(--line)",padding:"14px 4px",fontSize:".92rem",letterSpacing:".08em",textTransform:"uppercase",color:"var(--ink)",textDecoration:"none"}}>Agenda ↗</a>
         <a className="hl" href={GFORM} target="_blank" rel="noreferrer" style={{display:"block",width:"100%",textAlign:"left",borderBottom:"1px solid var(--line)",padding:"14px 4px",fontSize:".92rem",letterSpacing:".08em",textTransform:"uppercase",color:"var(--pine)",fontWeight:600}}>{t.submit} ↗</a>
         <button onClick={()=>nav("admin")}>Admin</button>
         {admin && <button onClick={()=>{setOpen(false);logout();}}>Log out</button>}
@@ -388,8 +390,9 @@ function Hero({go,lang}){
       <p className="lead">{t.leadTail}</p>
       <div className="hero-meta serif">18–19 November 2026 <span className="dot">·</span> Faculty of Agriculture <span className="dot">·</span> Novi Sad</div>
       <div className="hero-actions">
+        <a className="btn btn-gold" href="/media/agenda.pdf" target="_blank" rel="noreferrer">Programme ↗</a>
         <a className="btn btn-dark" href={GFORM} target="_blank" rel="noreferrer">{t.submitPaper} ↗</a>
-        <button className="btn btn-gold" onClick={()=>go({name:"instructions"})}>{t.authorInstr}</button>
+        <button className="btn btn-line" onClick={()=>go({name:"instructions"})}>{t.authorInstr}</button>
         <a className="mail" href="mailto:smotra@polj.edu.rs">✉ smotra@polj.edu.rs</a>
       </div>
     </div>
